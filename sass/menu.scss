@@ -137,6 +137,7 @@ nav {
 					width: 20%;
 					height: $nav-height;
 					cursor: pointer;
+					text-align: center;
 					color: $nav-show-sub-menu-color;
 				}
 			}
@@ -174,7 +175,7 @@ html.touch {
 	}
 }
 
-@media screen and (min-width: 480px){
+@media screen and (min-width: 481px){
 	nav {
 		#menu-rd {
 			#{$sub-menu-class} a {
@@ -194,6 +195,7 @@ html.touch {
 						width: auto;
 					}
 					> .show-sub-menu {
+						text-align: left;
 						width: $nav-height;
 					}
 				}

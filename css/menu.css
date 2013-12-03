@@ -82,6 +82,7 @@ nav #menu-rd li.has-sub-menu > .show-sub-menu {
   width: 20%;
   height: 40px;
   cursor: pointer;
+  text-align: center;
   color: #69505b;
 }
 nav #menu-rd > li {
@@ -103,7 +104,7 @@ html.touch .show-sub-menu {
   outline: none;
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 481px) {
   nav #menu-rd .sub-menu a {
     padding-left: 20px !important;
   }
@@ -121,6 +122,7 @@ html.touch .show-sub-menu {
     width: auto;
   }
   nav #menu-rd li.has-sub-menu > .show-sub-menu {
+    text-align: left;
     width: 40px;
   }
   nav #menu-rd > li {
