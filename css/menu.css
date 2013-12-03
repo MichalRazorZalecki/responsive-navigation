@@ -1,0 +1,142 @@
+/*! Responsive Navigation */
+/* ==========================================================================
+   Helper Mixin
+   ========================================================================== */
+/*
+ * Sub Menu Indent
+ */
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+.group:before,
+.group:after {
+  content: "";
+  display: table;
+}
+
+.group:after {
+  clear: both;
+}
+
+.group {
+  zoom: 1;
+  /* For IE 6/7 (trigger hasLayout) */
+}
+
+/* ==========================================================================
+   Responsive Navidation
+   ========================================================================== */
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+nav #menu-rd {
+  margin: 0;
+  padding: 0;
+  font-size: 1.125em;
+}
+nav #menu-rd .sub-menu .sub-menu a {
+  padding-left: 50px;
+}
+nav #menu-rd .sub-menu .sub-menu .sub-menu a {
+  padding-left: 80px;
+}
+nav #menu-rd .sub-menu .sub-menu .sub-menu .sub-menu a {
+  padding-left: 110px;
+}
+nav #menu-rd ul {
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+nav #menu-rd ul ul {
+  top: 0;
+  left: 100%;
+}
+nav #menu-rd ul.open {
+  display: block;
+}
+nav #menu-rd li {
+  line-height: 40px;
+  background: #e2f2ad;
+}
+nav #menu-rd li a {
+  color: #69505b;
+  text-decoration: none;
+  display: block;
+  padding: 0 20px;
+}
+nav #menu-rd li a:hover, nav #menu-rd li a:focus {
+  text-decoration: underline;
+}
+nav #menu-rd li.has-sub-menu > a {
+  display: inline-block;
+  width: 80%;
+}
+nav #menu-rd li.has-sub-menu > .show-sub-menu {
+  display: inline-block;
+  width: 20%;
+  height: 40px;
+  cursor: pointer;
+  color: #69505b;
+}
+nav #menu-rd > li {
+  background: #cbe86b;
+}
+
+html.no-js nav #menu-rd ul {
+  display: block;
+}
+html.no-js nav #menu-rd li.has-sub-menu > a {
+  width: 100%;
+}
+html.no-js nav #menu-rd .show-sub-menu {
+  display: none;
+}
+
+html.touch nav a,
+html.touch .show-sub-menu {
+  outline: none;
+}
+
+@media screen and (min-width: 480px) {
+  nav #menu-rd .sub-menu a {
+    padding-left: 20px !important;
+  }
+  nav #menu-rd ul {
+    position: absolute;
+    z-index: 999;
+    top: 40px;
+    left: 0;
+  }
+  nav #menu-rd li {
+    position: relative;
+    white-space: nowrap;
+  }
+  nav #menu-rd li.has-sub-menu > a {
+    width: auto;
+  }
+  nav #menu-rd li.has-sub-menu > .show-sub-menu {
+    width: 40px;
+  }
+  nav #menu-rd > li {
+    float: left;
+        	/*
+        	border-left: 1px solid $nav-color;
+	        &:first-child {
+	        	border: none;
+	        }
+	        */
+  }
+  nav #menu-rd > li > ul {
+    min-width: 100%;
+  }
+
+  html.no-js nav #menu-rd ul {
+    display: none;
+  }
+}
