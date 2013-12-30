@@ -65,15 +65,15 @@ $sub-menu-class: '.sub-menu';
    Helper classes
    ========================================================================== */
 
-.group:before,
-.group:after {
+.clearfix:before,
+.clearfix:after {
     content: "";
     display: table;
 } 
-.group:after {
+.clearfix:after {
     clear: both;
 }
-.group {
+.clearfix {
     zoom: 1; /* For IE 6/7 (trigger hasLayout) */
 }
 
@@ -92,13 +92,14 @@ $sub-menu-class: '.sub-menu';
 $nav-font-size: emCalc(18px);
 
 $nav-height: 40px;
+$nav-icon-width: $nav-height;
 $nav-background: #CBE86B;
 $nav-color: #69505B;
 $nav-show-sub-menu-color: #69505B;
 
 nav {
 	#menu-rd {
-		@include sub-menu-indent(30px);
+		@include sub-menu-indent(20px);
 	    margin: 0;
 	    padding: 0;
 	    font-size: $nav-font-size;
@@ -111,12 +112,12 @@ nav {
 	            left: 100%;
 	        }
 	        &.open{
-	            display: block;
 	        }
 	    }
 	    li {
 	        line-height: $nav-height;
 	        background: lighten($nav-background, 15%);
+	        position: relative;
 	        a {
 	        	color: $nav-color;
 	        	text-decoration: none;
@@ -128,14 +129,18 @@ nav {
 	            }
 	        }
 	        &.has-sub-menu{
+	        	@extend .clearfix; 
+	        	width: auto;
 				> a {
-					display: inline-block;
-					width: 80%;
+					display: block;
+					padding: 0 $nav-icon-width 0 $sub-menu-start-indent;
 				}
 				> .show-sub-menu {
-					display: inline-block;
-					width: 20%;
 					height: $nav-height;
+					width: $nav-icon-width;
+					position: absolute;
+					top: 0;
+					right: 0;
 					cursor: pointer;
 					text-align: center;
 					color: $nav-show-sub-menu-color;
@@ -188,39 +193,38 @@ html.touch {
 		        left: 0;
 			}
 			li {
-				position: relative;
 				white-space:nowrap;
+				/*
 				&.has-sub-menu{
 					> a {
 						width: auto;
 					}
 					> .show-sub-menu {
-						text-align: left;
 						width: $nav-height;
 					}
-				}
+				}*/
 			}
 	        > li {
 	        	float: left;
-	        	/*
+	        	
 	        	border-left: 1px solid $nav-color;
 		        &:first-child {
 		        	border: none;
 		        }
-		        */
-	        	> ul {
+		        
+	        	ul {
 		            min-width: 100%;
 		        }
 	        }
 		}
 	}
 	html.no-js {
-	nav {
-		#menu-rd {
-			ul {
-				display: none;
+		nav {
+			#menu-rd {
+				ul {
+					display: none;
+				}
 			}
 		}
 	}
-}
 }
