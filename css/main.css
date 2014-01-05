@@ -157,7 +157,7 @@ blockquote {
 }
 
 body {
-  background: #CBE86B;
+  background: #041122;
 }
 
 #page {
@@ -165,12 +165,13 @@ body {
   margin: 0 auto;
   padding: 0 24px;
   background: white;
+  color: #041122;
 }
 #page header {
   padding: 24px 0;
 }
 #page footer a {
-  color: #69505B;
+  color: #259073;
   font-weight: bold;
 }
 

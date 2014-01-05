@@ -38,9 +38,9 @@ $.fn.navHide = function (opts) {
    Menu Responsive Dropdown
    ========================================================================== */
 
-var nav_has_sub_menus = $('#menu-rd .has-sub-menu');
+var nav_has_sub_menus = $('#menu-rd .menu-item-has-children');
 
-var animationSpeed = 500;
+var animationSpeed = 300;
 var hideSubMenuDelay = 300; //0 for closing immediately
 
 nav_has_sub_menus.each(function(index, element){
@@ -49,26 +49,26 @@ nav_has_sub_menus.each(function(index, element){
 	if($('html').hasClass('touch')){
 		$(element).find('> .show-sub-menu').on('click', function(){
 			if($(element).find('> .sub-menu').hasClass('open'))
-				$(element).find('.sub-menu').removeClass('open').navHide(animationSpeed);
+				$(element).find('.sub-menu').removeClass('open').navHide({duration:animationSpeed});
 			else {
-				nav_has_sub_menus.not($(this).parents('.has-sub-menu')).find('.sub-menu').removeClass('open').navHide(animationSpeed);
-				$(element).find('> .sub-menu').addClass('open').navShow(animationSpeed);
+				nav_has_sub_menus.not($(this).parents('.menu-item-has-children')).find('.sub-menu').removeClass('open').navHide({duration:animationSpeed});
+				$(element).find('> .sub-menu').addClass('open').navShow({duration:animationSpeed});
 			}						
 		});
 
 		$(window).on("click", function(e){
 			if($(e.target).parents('#menu-rd').length == 0){
-				$('.sub-menu').removeClass('open').navHide(animationSpeed);	
+				$('.sub-menu').removeClass('open').navHide({duration:animationSpeed});	
 			}
 		})
 	} else {
 		$(element).hover(function(){
 			clearTimeout(hover_timer);
 			if(!$('> .sub-menu', element).hasClass('open'))
-				$('> .sub-menu', element).addClass('open').navShow(animationSpeed);
+				$('> .sub-menu', element).addClass('open').navShow({duration:animationSpeed});
 		}, function(){
 			hover_timer = setTimeout(function(){
-				$('> .sub-menu', element).removeClass('open').navHide(animationSpeed);
+				$('> .sub-menu', element).removeClass('open').navHide({duration:animationSpeed});
 			}, hideSubMenuDelay);
 		});
 	}	
@@ -77,12 +77,13 @@ nav_has_sub_menus.each(function(index, element){
 if(!$('html').hasClass('touch')){
 
 	$('#menu-rd').find('.show-sub-menu').on({focus : function(){
-		$(this).siblings('.sub-menu').addClass('open').navShow(animationSpeed);;
+		if (!$(this).siblings('.sub-menu').hasClass('open'))
+			$(this).siblings('.sub-menu').addClass('open').navShow({duration:animationSpeed});;
 	}});
 
 	$('#menu-rd').find('.sub-menu').each(function(index, element){
 		$(this).find('> li:last-child > a').on('blur', function(){
-			$(element).removeClass('open').navHide(animationSpeed);
+			$(element).removeClass('open').navHide({duration:animationSpeed});
 		});
 	});
 }

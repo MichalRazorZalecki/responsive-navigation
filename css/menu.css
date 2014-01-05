@@ -1,85 +1,67 @@
-/*! Responsive Navigation */
-/* ==========================================================================
-   Helper Mixin
-   ========================================================================== */
-/*
- * Sub Menu Indent
- */
 /* ==========================================================================
    Helper classes
    ========================================================================== */
-.clearfix:before, nav #menu-rd li.has-sub-menu:before,
-.clearfix:after,
-nav #menu-rd li.has-sub-menu:after {
+.clearfix:before,
+.clearfix:after {
   content: "";
   display: table;
 }
 
-.clearfix:after, nav #menu-rd li.has-sub-menu:after {
+.clearfix:after {
   clear: both;
 }
 
-.clearfix, nav #menu-rd li.has-sub-menu {
+.clearfix {
   zoom: 1;
   /* For IE 6/7 (trigger hasLayout) */
 }
 
 /* ==========================================================================
-   Responsive Navidation
+   Responsive Navigation
    ========================================================================== */
-*,
-*:after,
-*:before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+/*
+ * Sub Menu Indent
+ */
+#masternav {
+  background: rgba(0, 0, 0, 0);
 }
-
-nav #menu-rd {
-  margin: 0;
-  padding: 0;
-  font-size: 1.125em;
-}
-nav #menu-rd .sub-menu .sub-menu a {
+#masternav #menu-rd .sub-menu .sub-menu a {
   padding-left: 40px;
 }
-nav #menu-rd .sub-menu .sub-menu .sub-menu a {
+#masternav #menu-rd .sub-menu .sub-menu .sub-menu a {
   padding-left: 60px;
 }
-nav #menu-rd .sub-menu .sub-menu .sub-menu .sub-menu a {
+#masternav #menu-rd .sub-menu .sub-menu .sub-menu .sub-menu a {
   padding-left: 80px;
 }
-nav #menu-rd ul {
+#masternav #menu-rd,
+#masternav #menu-rd ul {
   margin: 0;
   padding: 0;
+  list-style: none;
+  font-size: 18px;
+}
+#masternav #menu-rd ul {
   display: none;
 }
-nav #menu-rd ul ul {
-  top: 0;
-  left: 100%;
-}
-nav #menu-rd li {
-  line-height: 40px;
-  background: #e2f2ad;
+#masternav #menu-rd li {
   position: relative;
+  line-height: 40px;
+  background: #041122;
 }
-nav #menu-rd li a {
-  color: #69505b;
+#masternav #menu-rd li a {
   text-decoration: none;
   display: block;
   padding: 0 20px;
+  color: #259073;
 }
-nav #menu-rd li a:hover, nav #menu-rd li a:focus {
+#masternav #menu-rd li a:hover {
   text-decoration: underline;
 }
-nav #menu-rd li.has-sub-menu {
-  width: auto;
-}
-nav #menu-rd li.has-sub-menu > a {
-  display: block;
+#masternav #menu-rd li.menu-item-has-children > a {
   padding: 0 40px 0 20px;
 }
-nav #menu-rd li.has-sub-menu > .show-sub-menu {
+#masternav #menu-rd li .show-sub-menu {
   height: 40px;
   width: 40px;
   position: absolute;
@@ -87,61 +69,76 @@ nav #menu-rd li.has-sub-menu > .show-sub-menu {
   right: 0;
   cursor: pointer;
   text-align: center;
-  color: #69505b;
+  color: #259073;
 }
-nav #menu-rd > li {
-  background: #cbe86b;
+#masternav #menu-rd > li {
+  line-height: 50px;
+  background: rgba(0, 0, 0, 0);
+}
+#masternav #menu-rd > li.menu-item-has-children > a {
+  padding: 0 50px 0 20px;
+}
+#masternav #menu-rd > li > a {
+  color: invisible;
+}
+#masternav #menu-rd > li > .show-sub-menu {
+  color: #259073;
+  width: 50px;
+  height: 50px;
 }
 
-html.no-js nav #menu-rd ul {
+html.no-js #masternav #menu-rd ul {
   display: block;
 }
-html.no-js nav #menu-rd li.has-sub-menu > a {
-  width: 100%;
-}
-html.no-js nav #menu-rd .show-sub-menu {
-  display: none;
-}
 
-html.touch nav a,
+html.touch #masternav a,
 html.touch .show-sub-menu {
   outline: none;
 }
 
 @media screen and (min-width: 481px) {
-  nav #menu-rd .sub-menu a {
-    padding-left: 20px !important;
+  #masternav #menu-rd {
+    position: relative;
   }
-  nav #menu-rd ul {
+  #masternav #menu-rd ul {
+    min-width: 100%;
     position: absolute;
     z-index: 999;
-    top: 40px;
+    top: 50px;
     left: 0;
   }
-  nav #menu-rd li {
+  #masternav #menu-rd ul ul {
+    top: 0;
+    left: 100%;
+  }
+  #masternav #menu-rd ul a {
+    padding-left: 20px !important;
+  }
+  #masternav #menu-rd ul li:first-child {
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    -ms-border-radius: 3px 3px 0 0;
+    -o-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+  }
+  #masternav #menu-rd ul li:last-child {
+    -webkit-border-radius: 0 0 3px 3px;
+    -moz-border-radius: 0 0 3px 3px;
+    -ms-border-radius: 0 0 3px 3px;
+    -o-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+  }
+  #masternav #menu-rd li {
     white-space: nowrap;
-    /*
-    &.has-sub-menu{
-    	> a {
-    		width: auto;
-    	}
-    	> .show-sub-menu {
-    		width: $nav-height;
-    	}
-    }*/
   }
-  nav #menu-rd > li {
+  #masternav #menu-rd > li {
     float: left;
-    border-left: 1px solid #69505b;
-  }
-  nav #menu-rd > li:first-child {
-    border: none;
-  }
-  nav #menu-rd > li ul {
-    min-width: 100%;
   }
 
-  html.no-js nav #menu-rd ul {
+  html.no-js #masternav #menu-rd a {
+    padding: 0 20px;
+  }
+  html.no-js #masternav #menu-rd ul {
     display: none;
   }
 }

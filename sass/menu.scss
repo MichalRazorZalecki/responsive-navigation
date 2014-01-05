@@ -1,66 +1,3 @@
-/*! Responsive Navigation */
-
-/* ==========================================================================
-   Helper Mixin
-   ========================================================================== */
-
-// It strips the unit of measure and returns it
-@function strip-unit($num) {
-  @return $num / ($num * 0 + 1);
-}
-
-// Converts "px" to "em" using the ($)em-base
-@function convert-to-em($value)  {
-  $value: strip-unit($value) / strip-unit($em-base) * 1em;
-  @if ($value == 0em) { $value: 0; } // Turn 0em into 0
-  @return $value;
-}
-
-// Working in ems is annoying. Think in pixels by using this handy function, emCalc(#)
-// Just enter the number, no need to mention "px"
-@function emCalc($values...) {
-  $max: length($values); // Get the total number of parameters passed
-
-  // If there is only 1 parameter, then return it as an integer.
-  // This is done because a list can't be multiplied or divided even if it contains a single value
-  @if $max == 1 { @return convert-to-em(nth($values, 1)); }
-
-  $emValues: (); // This will eventually store the converted $values in a list
-  @for $i from 1 through $max {
-    $emValues: append($emValues, convert-to-em(nth($values, $i)));
-  }
-  @return $emValues;
-}
-
-// We use this to do clear floats
-@mixin clearfix() {
-  *zoom:1;
-  &:before, &:after { content: " "; display: table; }
-  &:after { clear: both; }
-}
-
-$em-base: 16px;
-
-/*
- * Sub Menu Indent
- */
-
-$sub-menu-max-deep: 4;
-$sub-menu-start-indent: 20px;
-$sub-menu-class: '.sub-menu';
-
-@mixin sub-menu-indent($sub-menu-nth-indent) {
-	$sub-menu-class-nth: $sub-menu-class;
-	@for $i from 1 through ($sub-menu-max-deep - 1) {
-  		$sub-menu-class-nth: $sub-menu-class-nth + ' ' + $sub-menu-class;
-	  	#{ $sub-menu-class-nth } {
-	  		a {
-	  			padding-left: $sub-menu-nth-indent * $i + $sub-menu-start-indent;
-	  		}
-	  	}
-	}
-}
-
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -77,151 +14,197 @@ $sub-menu-class: '.sub-menu';
     zoom: 1; /* For IE 6/7 (trigger hasLayout) */
 }
 
-/* ==========================================================================
-   Responsive Navidation
-   ========================================================================== */
-
 @import "compass";
 
-*,
-*:after,
-*:before {
-    @include box-sizing(border-box);
+/* ==========================================================================
+   Responsive Navigation
+   ========================================================================== */
+
+/*
+ * Sub Menu Indent
+ */
+
+$nav-sub-menu-max-deep: 4;
+$nav-sub-menu-start-indent: 20px;
+$nav-sub-menu-class: ".sub-menu";
+
+@mixin sub-menu-indent($nav-sub-menu-nth-indent) {
+	$nav-sub-menu-class-nth: $nav-sub-menu-class;
+	@for $i from 1 through ($nav-sub-menu-max-deep - 1) {
+  		$nav-sub-menu-class-nth: $nav-sub-menu-class-nth + ' ' + $nav-sub-menu-class;
+	  	#{ $nav-sub-menu-class-nth } {
+	  		a {
+	  			padding-left: $nav-sub-menu-nth-indent * $i + $nav-sub-menu-start-indent;
+	  		}
+	  	}
+	}
 }
 
-$nav-font-size: emCalc(18px);
+$nav-font-size: 18px;
 
-$nav-height: 40px;
-$nav-icon-width: $nav-height;
-$nav-background: #CBE86B;
-$nav-color: #69505B;
-$nav-show-sub-menu-color: #69505B;
+$nav-li-1st-lvl-color: invisible;
+$nav-li-1st-lvl-background: rgba(0,0,0,0);
+$nav-li-1st-lvl-height: 50px;
+$nav-li-1st-lvl-show-sub-menu-color: #259073;
+$nav-li-1st-lvl-show-sub-menu-width: $nav-li-1st-lvl-height;
+$nav-li-1st-lvl-show-sub-menu-height: $nav-li-1st-lvl-height;
 
-nav {
+$nav-li-color: #259073;
+$nav-li-background: #041122;
+$nav-li-height: 40px;
+$nav-li-show-sub-menu-color: #259073;
+$nav-li-show-sub-menu-width: $nav-li-height;
+$nav-li-show-sub-menu-height: $nav-li-height;
+
+#masternav {
+	background: $nav-li-1st-lvl-background;
 	#menu-rd {
+		// -> root ul
 		@include sub-menu-indent(20px);
-	    margin: 0;
-	    padding: 0;
-	    font-size: $nav-font-size;
+	    &,
 	    ul {
-	        margin: 0;
-	        padding: 0;
+	    	// -> all ul in menu
+	    	margin: 0;
+		    padding: 0;
+		    list-style: none;
+		    font-size: $nav-font-size;
+	    }
+	    ul {
+	    	// -> all dropdown ul
 	        display: none;
-	        ul {
-	            top: 0;
-	            left: 100%;
-	        }
-	        &.open{
-	        }
 	    }
 	    li {
-	        line-height: $nav-height;
-	        background: lighten($nav-background, 15%);
+	    	// -> all li
 	        position: relative;
+	        line-height: $nav-li-height;
+	        background: $nav-li-background;
 	        a {
-	        	color: $nav-color;
+	        	// -> all a in all li
 	        	text-decoration: none;
 	            display: block;
-	            padding: 0 $sub-menu-start-indent;
-	            &:hover,
-	            &:focus {
+	            padding: 0 $nav-sub-menu-start-indent;
+	            color: $nav-li-color;
+	            &:hover {
 	            	text-decoration: underline;
 	            }
 	        }
-	        &.has-sub-menu{
-	        	@extend .clearfix; 
-	        	width: auto;
+	        &.menu-item-has-children{
+	    	// -> all li which has submenu
 				> a {
-					display: block;
-					padding: 0 $nav-icon-width 0 $sub-menu-start-indent;
-				}
-				> .show-sub-menu {
-					height: $nav-height;
-					width: $nav-icon-width;
-					position: absolute;
-					top: 0;
-					right: 0;
-					cursor: pointer;
-					text-align: center;
-					color: $nav-show-sub-menu-color;
+					// all a next to dropdown icon
+					padding: 0 $nav-li-show-sub-menu-width 0 $nav-sub-menu-start-indent;
 				}
 			}
+			.show-sub-menu {
+				// dropdown icons
+				height: $nav-li-show-sub-menu-width;
+				width: $nav-li-show-sub-menu-width;
+				position: absolute;
+				top: 0;
+				right: 0;
+				cursor: pointer;
+				text-align: center;
+				color: $nav-li-show-sub-menu-color;
+			}
 	    }
-	    > li {
-	        background: $nav-background;
+		> li {
+	    	// -> li in root menu
+			line-height: $nav-li-1st-lvl-height;
+			background: $nav-li-1st-lvl-background;
+			&.menu-item-has-children{
+	    	// -> li in root menu which has submenu
+				> a {
+					// all a next to dropdown icon
+					padding: 0 $nav-li-1st-lvl-show-sub-menu-width 0 $nav-sub-menu-start-indent;
+				}
+			}
+			> a {
+				// -> a in li in root (1st lvl)
+				color: $nav-li-1st-lvl-color;
+				
+			}
+			> .show-sub-menu {
+				// -> dropdown icons in li in root (1st lvl)
+				color: $nav-li-1st-lvl-show-sub-menu-color;
+				width: $nav-li-1st-lvl-show-sub-menu-width;
+				height: $nav-li-1st-lvl-show-sub-menu-width;
+			}
 	    }
 	}
 }
 
+
 html.no-js {
-	nav {
+	#masternav {
 		#menu-rd {
 			ul {
+				// -> all dropdowns when JS disabled
 				display: block;
-			}
-			li {
-				&.has-sub-menu{
-					> a {
-						width: 100%;
-					}
-				}
-			}
-			.show-sub-menu {
-				display: none;
 			}
 		}
 	}
 }
 
+
 html.touch {
-	nav a,
+	#masternav a,
 	.show-sub-menu {
+		// -> all a and dropdown icons on touch screen
 		outline: none;
 	}
 }
 
 @media screen and (min-width: 481px){
-	nav {
+	#masternav {
 		#menu-rd {
-			#{$sub-menu-class} a {
-				padding-left: $sub-menu-start-indent !important;
-			}
+			// -> root ul
+			position: relative;
 			ul {
-				position: absolute;
+				// submenus
+	            min-width: 100%;
+	            position: absolute;
 		        z-index: 999;
-		        top: $nav-height;
+		        top: $nav-li-1st-lvl-height;
 		        left: 0;
-			}
+		        ul {
+		        	// -> 2nd+ lvs submenus
+		            top: 0;
+		            left: 100%;
+		        }
+	            a {
+					// all a in submenus
+					padding-left: $nav-sub-menu-start-indent !important;
+				}
+				li {
+					// all li in submenus
+					&:first-child {
+						@include border-radius(3px 3px 0 0);	
+					}
+					&:last-child {
+						@include border-radius(0 0 3px 3px);	
+					}
+				}
+	        }
 			li {
+				// all li in root
 				white-space:nowrap;
-				/*
-				&.has-sub-menu{
-					> a {
-						width: auto;
-					}
-					> .show-sub-menu {
-						width: $nav-height;
-					}
-				}*/
 			}
 	        > li {
-	        	float: left;
-	        	
-	        	border-left: 1px solid $nav-color;
-		        &:first-child {
-		        	border: none;
-		        }
-		        
-	        	ul {
-		            min-width: 100%;
-		        }
+	        	// li in root (1st lvl)	        	
+	        	float: left;		        		        
 	        }
 		}
 	}
+	
 	html.no-js {
-		nav {
+		#masternav {
 			#menu-rd {
+				a {
+					// -> all a when JS disabled
+					padding: 0 $nav-sub-menu-start-indent;
+				}
 				ul {
+					// -> all dropdowns when JS disabled
 					display: none;
 				}
 			}
