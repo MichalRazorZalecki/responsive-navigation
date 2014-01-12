@@ -23,7 +23,7 @@
  * Sub Menu Indent
  */
 #masternav {
-  background: rgba(0, 0, 0, 0);
+  background: #041122;
 }
 #masternav #menu-rd .sub-menu .sub-menu a {
   padding-left: 40px;
@@ -47,7 +47,7 @@
 #masternav #menu-rd li {
   position: relative;
   line-height: 40px;
-  background: #041122;
+  background: #04162d;
 }
 #masternav #menu-rd li a {
   text-decoration: none;
@@ -73,13 +73,13 @@
 }
 #masternav #menu-rd > li {
   line-height: 50px;
-  background: rgba(0, 0, 0, 0);
+  background: #041122;
 }
 #masternav #menu-rd > li.menu-item-has-children > a {
   padding: 0 50px 0 20px;
 }
 #masternav #menu-rd > li > a {
-  color: invisible;
+  color: #259073;
 }
 #masternav #menu-rd > li > .show-sub-menu {
   color: #259073;
@@ -114,19 +114,16 @@ html.touch .show-sub-menu {
   #masternav #menu-rd ul a {
     padding-left: 20px !important;
   }
-  #masternav #menu-rd ul li:first-child {
-    -webkit-border-radius: 3px 3px 0 0;
-    -moz-border-radius: 3px 3px 0 0;
-    -ms-border-radius: 3px 3px 0 0;
-    -o-border-radius: 3px 3px 0 0;
-    border-radius: 3px 3px 0 0;
-  }
-  #masternav #menu-rd ul li:last-child {
-    -webkit-border-radius: 0 0 3px 3px;
-    -moz-border-radius: 0 0 3px 3px;
-    -ms-border-radius: 0 0 3px 3px;
-    -o-border-radius: 0 0 3px 3px;
-    border-radius: 0 0 3px 3px;
+  #masternav #menu-rd ul li {
+    /*
+    // all li in submenus
+    &:first-child {
+    	@include border-radius(6px 6px 0 0);	
+    }
+    &:last-child {
+    	@include border-radius(0 0 6px 6px);	
+    }
+    */
   }
   #masternav #menu-rd li {
     white-space: nowrap;

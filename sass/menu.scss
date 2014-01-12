@@ -42,15 +42,15 @@ $nav-sub-menu-class: ".sub-menu";
 
 $nav-font-size: 18px;
 
-$nav-li-1st-lvl-color: invisible;
-$nav-li-1st-lvl-background: rgba(0,0,0,0);
+$nav-li-1st-lvl-color: #259073;
+$nav-li-1st-lvl-background: #041122;
 $nav-li-1st-lvl-height: 50px;
 $nav-li-1st-lvl-show-sub-menu-color: #259073;
 $nav-li-1st-lvl-show-sub-menu-width: $nav-li-1st-lvl-height;
 $nav-li-1st-lvl-show-sub-menu-height: $nav-li-1st-lvl-height;
 
 $nav-li-color: #259073;
-$nav-li-background: #041122;
+$nav-li-background: #04162D;
 $nav-li-height: 40px;
 $nav-li-show-sub-menu-color: #259073;
 $nav-li-show-sub-menu-width: $nav-li-height;
@@ -176,13 +176,15 @@ html.touch {
 					padding-left: $nav-sub-menu-start-indent !important;
 				}
 				li {
+					/*
 					// all li in submenus
 					&:first-child {
-						@include border-radius(3px 3px 0 0);	
+						@include border-radius(6px 6px 0 0);	
 					}
 					&:last-child {
-						@include border-radius(0 0 3px 3px);	
+						@include border-radius(0 0 6px 6px);	
 					}
+					*/
 				}
 	        }
 			li {
