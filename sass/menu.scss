@@ -42,25 +42,27 @@ $nav-sub-menu-class: ".sub-menu";
 
 $nav-font-size: 18px;
 
+$nav-ul-1st-lvl-background: #04162D;
+
 $nav-li-1st-lvl-color: #259073;
-$nav-li-1st-lvl-background: #041122;
 $nav-li-1st-lvl-height: 50px;
 $nav-li-1st-lvl-show-sub-menu-color: #259073;
 $nav-li-1st-lvl-show-sub-menu-width: $nav-li-1st-lvl-height;
 $nav-li-1st-lvl-show-sub-menu-height: $nav-li-1st-lvl-height;
 
+$nav-ul-background: #04162D;
+
 $nav-li-color: #259073;
-$nav-li-background: #04162D;
 $nav-li-height: 40px;
 $nav-li-show-sub-menu-color: #259073;
 $nav-li-show-sub-menu-width: $nav-li-height;
 $nav-li-show-sub-menu-height: $nav-li-height;
 
 #masternav {
-	background: $nav-li-1st-lvl-background;
 	#menu-rd {
 		// -> root ul
 		@include sub-menu-indent(20px);
+		background: $nav-ul-1st-lvl-background;
 	    &,
 	    ul {
 	    	// -> all ul in menu
@@ -72,12 +74,12 @@ $nav-li-show-sub-menu-height: $nav-li-height;
 	    ul {
 	    	// -> all dropdown ul
 	        display: none;
+	        background: $nav-ul-background;
 	    }
 	    li {
 	    	// -> all li
 	        position: relative;
 	        line-height: $nav-li-height;
-	        background: $nav-li-background;
 	        a {
 	        	// -> all a in all li
 	        	text-decoration: none;
@@ -105,12 +107,16 @@ $nav-li-show-sub-menu-height: $nav-li-height;
 				cursor: pointer;
 				text-align: center;
 				color: $nav-li-show-sub-menu-color;
+				border: 0;
+				background: none;
+				&:focus {
+					outline: $nav-li-show-sub-menu-color dotted 1px;
+				}
 			}
 	    }
 		> li {
 	    	// -> li in root menu
 			line-height: $nav-li-1st-lvl-height;
-			background: $nav-li-1st-lvl-background;
 			&.menu-item-has-children{
 	    	// -> li in root menu which has submenu
 				> a {

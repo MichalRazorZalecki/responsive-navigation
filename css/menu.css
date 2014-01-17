@@ -22,8 +22,8 @@
 /*
  * Sub Menu Indent
  */
-#masternav {
-  background: #041122;
+#masternav #menu-rd {
+  background: #04162d;
 }
 #masternav #menu-rd .sub-menu .sub-menu a {
   padding-left: 40px;
@@ -43,11 +43,11 @@
 }
 #masternav #menu-rd ul {
   display: none;
+  background: #04162d;
 }
 #masternav #menu-rd li {
   position: relative;
   line-height: 40px;
-  background: #04162d;
 }
 #masternav #menu-rd li a {
   text-decoration: none;
@@ -70,10 +70,14 @@
   cursor: pointer;
   text-align: center;
   color: #259073;
+  border: 0;
+  background: none;
+}
+#masternav #menu-rd li .show-sub-menu:focus {
+  outline: #259073 dotted 1px;
 }
 #masternav #menu-rd > li {
   line-height: 50px;
-  background: #041122;
 }
 #masternav #menu-rd > li.menu-item-has-children > a {
   padding: 0 50px 0 20px;
