@@ -97,7 +97,7 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-@import "compass";
+@import "global-settings";
 
 *,
 *:after,
@@ -106,7 +106,7 @@ textarea {
 }
 
 html {
-    font-size: 100%;
+    font-size: $base-font-size;
 }
 h1, .alpha,
 h2, .beta,
@@ -159,7 +159,7 @@ blockquote {
 }
 
 body {
-    background: #041122;
+    background: #49403C;
 }
 
 #page {
@@ -173,10 +173,54 @@ body {
     }
     footer {
     a {
-            color: #259073;
+            color: #379F7A;
             font-weight: bold;
         }
     }
+}
+
+/* ==========================================================================
+   Menu
+   ========================================================================== */
+
+.menu {
+    .expand-icon {
+        @extend .icon;
+        @extend .icon-angle-down;
+    }
+    @media screen and (min-width: 481px){
+        ul {
+            .expand-icon {
+                &:before {
+                    content: $fa-var-angle-right;
+                }
+            }
+        }
+    }
+    a {
+        text-decoration: none;
+    }
+    a,
+    .show-sub-menu {
+        color: white;
+    }
+    li {
+        background: #379F7A;
+    }
+    li {
+        &:hover {
+            background: #31725F;
+        }
+    }
+}
+
+.menu-awning {
+    color: white;
+    background: #2A363B;
+}
+
+.menu-awning-button {
+    color: white;
 }
 
 /* ==========================================================================

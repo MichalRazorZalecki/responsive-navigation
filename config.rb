@@ -14,7 +14,7 @@ output_style = :expanded
 # relative_assets = true
 
 # To disable debugging comments that display the original location of your selectors. Uncomment:
-line_comments = false
+# line_comments = false
 
 
 # If you prefer the indented syntax, you might want to regenerate this
@@ -22,3 +22,5 @@ line_comments = false
 # preferred_syntax = :sass
 # and then run:
 # sass-convert -R --from scss --to sass sass scss && rm -rf sass && mv scss sass
+
+Sass::Script::Number.precision = 8
