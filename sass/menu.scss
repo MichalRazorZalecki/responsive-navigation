@@ -66,17 +66,17 @@ $nav-sub-menu-class: ".sub-menu";
 #{$nav-awning-selector} {
 	@include group;
 	line-height: em($nav-awning-height);
-	padding: 0 em($nav-sub-menu-start-indent);
+	padding-left: em($nav-sub-menu-start-indent);
 	#{$nav-awning-title-selector} {
 		font-size: em($nav-awning-title-font-size);
 	}
 	#{$nav-awning-button-selector} {
 		font-size: em($nav-awning-button-font-size);
+		padding: 0 em($nav-sub-menu-start-indent, $nav-awning-button-font-size);
 		background: none;
 		border: 0;
 		float: right;
 		height: em($nav-awning-height, $nav-awning-button-font-size);
-		padding: 0;
 	}
 }
 #{$nav-menu-selector} {

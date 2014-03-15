@@ -2151,7 +2151,7 @@
 /* line 66, ../sass/menu.scss */
 .menu-awning {
   line-height: 3.125em;
-  padding: 0 1em;
+  padding-left: 1em;
 }
 /* line 10, ../sass/_mixins.scss */
 .menu-awning:after {
@@ -2166,11 +2166,11 @@
 /* line 73, ../sass/menu.scss */
 .menu-awning .menu-awning-button {
   font-size: 1.5em;
+  padding: 0 0.66666667em;
   background: none;
   border: 0;
   float: right;
   height: 2.08333333em;
-  padding: 0;
 }
 
 /* line 82, ../sass/menu.scss */

@@ -61,7 +61,7 @@ $nav_has_sub_menus.each(function(index, element){
 		});
 
 		$(window).on("click", function(e){
-			if($(e.target).parents('#menu-rd').length == 0){
+			if($(e.target).parents('#mastermenu').length == 0){
 				$('.sub-menu').removeClass('open').navHide({duration:animationSpeed});
 			}
 		});
