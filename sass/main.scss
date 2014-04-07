@@ -184,13 +184,9 @@ body {
    ========================================================================== */
 
 .menu {
-    .expand-icon {
-        @extend .icon;
-        @extend .icon-angle-down;
-    }
     @media screen and (min-width: 481px){
         ul {
-            .expand-icon {
+            .icon-angle-down {
                 &:before {
                     content: $fa-var-angle-right;
                 }
@@ -202,14 +198,26 @@ body {
     }
     a,
     .show-sub-menu {
-        color: white;
+        outline: none;
+        &:focus {
+            color: #1B4B3A;
+        }
     }
     li {
         background: #379F7A;
     }
     li {
+        > a,
+        > .show-sub-menu,
+        &[class*="icon-"] {
+            color: white;
+        }
         &:hover {
-            background: #31725F;
+            > a,
+            > .show-sub-menu,
+            &[class*="icon-"] {
+                color: #1B4B3A;
+            }
         }
     }
 }
@@ -221,6 +229,7 @@ body {
 
 .menu-awning-button {
     color: white;
+    outline: none;
 }
 
 /* ==========================================================================

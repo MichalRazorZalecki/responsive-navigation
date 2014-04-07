@@ -32,9 +32,13 @@ $nav-li-1st-lvl-height-mobile: $nav-li-height;
 $nav-li-1st-lvl-show-sub-menu-height: $nav-li-1st-lvl-height;
 $nav-li-1st-lvl-show-sub-menu-height-mobile: $nav-li-1st-lvl-height-mobile;
 
+$nav-li-icon-width:  20px;
+$nav-li-icon-margin-left: 16px;
+$nav-li-icon-margin-right: 4px;
+
 // NAV basic settings
 
-$nav-breakpoint: 481px;
+$nav-breakpoint: 521px;
 $nav-font-size: 18px;
 
 $nav-to-right: false;
@@ -83,8 +87,25 @@ $nav-sub-menu-class: ".sub-menu";
 	// -> root ul
 	@include group;
 	@include sub-menu-indent($nav-sub-menu-start-indent);
+
 	display: none;
 	font-size: em($nav-font-size);
+
+	> li[class*="icon-"] {
+		// -> li in root menu with icon
+        &:before {
+            float: left;
+			margin-left: em($nav-li-icon-margin-left, $nav-font-size);
+			width: em($nav-li-icon-width, $nav-font-size);
+			line-height: em($nav-li-1st-lvl-height-mobile, $nav-font-size);
+        }
+        a {
+        	padding-left: em($nav-li-icon-width + $nav-li-icon-margin-left + $nav-li-icon-margin-right, $nav-font-size);
+        	z-index: 2;
+        	position: relative;
+        }
+    }
+
     &,
     ul {
     	// -> all ul in menu
@@ -123,6 +144,7 @@ $nav-sub-menu-class: ".sub-menu";
 			right: 0;
 			text-align: center;
 			top: 0;
+			z-index: 2;
 			width: em($nav-li-show-sub-menu-width, $nav-font-size);
 		}
     }
@@ -155,6 +177,12 @@ $nav-sub-menu-class: ".sub-menu";
 		@if $nav-to-right {
 			text-align: right;
 		}
+		> li[class*="icon-"] {
+			// li in root (1st lvl) with icon
+	        &:before {
+				line-height: em($nav-li-1st-lvl-height, $nav-font-size);
+	        }
+	    }
 		ul {
 			// -> submenus
 	        left: 0;

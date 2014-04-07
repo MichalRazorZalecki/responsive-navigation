@@ -110,8 +110,8 @@ textarea {
   font-style: normal;
 }
 
-/* line 4, ../sass/font-awesome/_core.scss */
-.icon, .menu .expand-icon {
+/* line 3, ../sass/font-awesome/_core.scss */
+[class*="icon-"]:before {
   display: inline-block;
   font-family: FontAwesome;
   font-style: normal;
@@ -197,11 +197,11 @@ textarea {
 }
 
 /* line 14, ../sass/font-awesome/_bordered-pulled.scss */
-.icon.pull-left, .menu .pull-left.expand-icon {
+.icon.pull-left {
   margin-right: .3em;
 }
 /* line 15, ../sass/font-awesome/_bordered-pulled.scss */
-.icon.pull-right, .menu .pull-right.expand-icon {
+.icon.pull-right {
   margin-left: .3em;
 }
 
@@ -1554,7 +1554,7 @@ textarea {
 }
 
 /* line 259, ../sass/font-awesome/_icons.scss */
-.icon-angle-down:before, .menu .expand-icon:before {
+.icon-angle-down:before {
   content: "\f107";
 }
 
@@ -2349,38 +2349,50 @@ body {
    Menu
    ========================================================================== */
 @media screen and (min-width: 481px) {
-  /* line 194, ../sass/main.scss */
-  .menu ul .expand-icon:before {
+  /* line 190, ../sass/main.scss */
+  .menu ul .icon-angle-down:before {
     content: "\f105";
   }
 }
-/* line 200, ../sass/main.scss */
+/* line 196, ../sass/main.scss */
 .menu a {
   text-decoration: none;
 }
-/* line 204, ../sass/main.scss */
+/* line 200, ../sass/main.scss */
 .menu a,
 .menu .show-sub-menu {
-  color: white;
+  outline: none;
 }
-/* line 207, ../sass/main.scss */
+/* line 202, ../sass/main.scss */
+.menu a:focus,
+.menu .show-sub-menu:focus {
+  color: #1B4B3A;
+}
+/* line 206, ../sass/main.scss */
 .menu li {
   background: #379F7A;
 }
-/* line 211, ../sass/main.scss */
-.menu li:hover {
-  background: #31725F;
+/* line 212, ../sass/main.scss */
+.menu li > a,
+.menu li > .show-sub-menu, .menu li[class*="icon-"] {
+  color: white;
+}
+/* line 218, ../sass/main.scss */
+.menu li:hover > a,
+.menu li:hover > .show-sub-menu, .menu li:hover[class*="icon-"] {
+  color: #1B4B3A;
 }
 
-/* line 217, ../sass/main.scss */
+/* line 225, ../sass/main.scss */
 .menu-awning {
   color: white;
   background: #2A363B;
 }
 
-/* line 222, ../sass/main.scss */
+/* line 230, ../sass/main.scss */
 .menu-awning-button {
   color: white;
+  outline: none;
 }
 
 /* ==========================================================================
@@ -2389,7 +2401,7 @@ body {
 /*
  * Image replacement
  */
-/* line 234, ../sass/main.scss */
+/* line 243, ../sass/main.scss */
 .ir {
   background-color: transparent;
   border: 0;
@@ -2398,7 +2410,7 @@ body {
   *text-indent: -9999px;
 }
 
-/* line 242, ../sass/main.scss */
+/* line 251, ../sass/main.scss */
 .ir:before {
   content: "";
   display: block;
@@ -2409,7 +2421,7 @@ body {
 /*
  * Hide from both screenreaders and browsers: h5bp.com/u
  */
-/* line 253, ../sass/main.scss */
+/* line 262, ../sass/main.scss */
 .hidden {
   display: none !important;
   visibility: hidden;
@@ -2418,7 +2430,7 @@ body {
 /*
  * Hide only visually, but have it available for screenreaders: h5bp.com/v
  */
-/* line 262, ../sass/main.scss */
+/* line 271, ../sass/main.scss */
 .visuallyhidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -2434,7 +2446,7 @@ body {
  * Extends the .visuallyhidden class to allow the element to be focusable
  * when navigated to via the keyboard: h5bp.com/p
  */
-/* line 279, ../sass/main.scss */
+/* line 288, ../sass/main.scss */
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {
   clip: auto;
@@ -2448,7 +2460,7 @@ body {
 /*
  * Hide visually and from screenreaders, but maintain layout
  */
-/* line 292, ../sass/main.scss */
+/* line 301, ../sass/main.scss */
 .invisible {
   visibility: hidden;
 }
@@ -2464,7 +2476,7 @@ body {
  * 2. The use of `table` rather than `block` is only necessary if using
  *    `:before` to contain the top-margins of child elements.
  */
-/* line 309, ../sass/main.scss */
+/* line 318, ../sass/main.scss */
 .clearfix:before,
 .clearfix:after {
   content: " ";
@@ -2473,7 +2485,7 @@ body {
   /* 2 */
 }
 
-/* line 314, ../sass/main.scss */
+/* line 323, ../sass/main.scss */
 .clearfix:after {
   clear: both;
 }
@@ -2482,7 +2494,7 @@ body {
  * For IE 6/7 only
  * Include this rule to trigger hasLayout and contain floats.
  */
-/* line 323, ../sass/main.scss */
+/* line 332, ../sass/main.scss */
 .clearfix {
   *zoom: 1;
 }
@@ -2503,7 +2515,7 @@ body {
    Inlined to avoid required HTTP connection: h5bp.com/r
    ========================================================================== */
 @media print {
-  /* line 350, ../sass/main.scss */
+  /* line 359, ../sass/main.scss */
   * {
     background: transparent !important;
     color: #000 !important;
@@ -2512,18 +2524,18 @@ body {
     text-shadow: none !important;
   }
 
-  /* line 358, ../sass/main.scss */
+  /* line 367, ../sass/main.scss */
   a,
   a:visited {
     text-decoration: underline;
   }
 
-  /* line 362, ../sass/main.scss */
+  /* line 371, ../sass/main.scss */
   a[href]:after {
     content: " (" attr(href) ")";
   }
 
-  /* line 366, ../sass/main.scss */
+  /* line 375, ../sass/main.scss */
   abbr[title]:after {
     content: " (" attr(title) ")";
   }
@@ -2531,33 +2543,33 @@ body {
   /*
    * Don't show links for images, or javascript/internal links
    */
-  /* line 376, ../sass/main.scss */
+  /* line 385, ../sass/main.scss */
   .ir a:after,
   a[href^="javascript:"]:after,
   a[href^="#"]:after {
     content: "";
   }
 
-  /* line 381, ../sass/main.scss */
+  /* line 390, ../sass/main.scss */
   pre,
   blockquote {
     border: 1px solid #999;
     page-break-inside: avoid;
   }
 
-  /* line 386, ../sass/main.scss */
+  /* line 395, ../sass/main.scss */
   thead {
     display: table-header-group;
     /* h5bp.com/t */
   }
 
-  /* line 391, ../sass/main.scss */
+  /* line 400, ../sass/main.scss */
   tr,
   img {
     page-break-inside: avoid;
   }
 
-  /* line 395, ../sass/main.scss */
+  /* line 404, ../sass/main.scss */
   img {
     max-width: 100% !important;
   }
@@ -2566,7 +2578,7 @@ body {
     margin: 0.5cm;
 }
 
-  /* line 405, ../sass/main.scss */
+  /* line 414, ../sass/main.scss */
   p,
   h2,
   h3 {
@@ -2574,7 +2586,7 @@ body {
     widows: 3;
   }
 
-  /* line 411, ../sass/main.scss */
+  /* line 420, ../sass/main.scss */
   h2,
   h3 {
     page-break-after: avoid;

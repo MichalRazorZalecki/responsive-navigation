@@ -12,8 +12,8 @@
   font-style: normal;
 }
 
-/* line 4, ../sass/font-awesome/_core.scss */
-.icon {
+/* line 3, ../sass/font-awesome/_core.scss */
+[class*="icon-"]:before {
   display: inline-block;
   font-family: FontAwesome;
   font-style: normal;
@@ -2148,7 +2148,7 @@
 /* ===================================================================================
    Responsive Navigation (https://github.com/MichalRazorZalecki/responsive-navigation)
    =================================================================================== */
-/* line 66, ../sass/menu.scss */
+/* line 70, ../sass/menu.scss */
 .menu-awning {
   line-height: 3.125em;
   padding-left: 1em;
@@ -2159,11 +2159,11 @@
   display: table;
   clear: both;
 }
-/* line 70, ../sass/menu.scss */
+/* line 74, ../sass/menu.scss */
 .menu-awning .menu-awning-title {
   font-size: 1.125em;
 }
-/* line 73, ../sass/menu.scss */
+/* line 77, ../sass/menu.scss */
 .menu-awning .menu-awning-button {
   font-size: 1.5em;
   padding: 0 0.66666667em;
@@ -2173,7 +2173,7 @@
   height: 2.08333333em;
 }
 
-/* line 82, ../sass/menu.scss */
+/* line 86, ../sass/menu.scss */
 .menu {
   display: none;
   font-size: 1.125em;
@@ -2184,44 +2184,57 @@
   display: table;
   clear: both;
 }
-/* line 57, ../sass/menu.scss */
+/* line 61, ../sass/menu.scss */
 .menu .sub-menu a {
   padding-left: 32px;
 }
-/* line 57, ../sass/menu.scss */
+/* line 61, ../sass/menu.scss */
 .menu .sub-menu .sub-menu a {
   padding-left: 48px;
 }
-/* line 57, ../sass/menu.scss */
+/* line 61, ../sass/menu.scss */
 .menu .sub-menu .sub-menu .sub-menu a {
   padding-left: 64px;
 }
-/* line 89, ../sass/menu.scss */
+/* line 96, ../sass/menu.scss */
+.menu > li[class*="icon-"]:before {
+  float: left;
+  margin-left: 0.88888889em;
+  width: 1.11111111em;
+  line-height: 2.22222222em;
+}
+/* line 102, ../sass/menu.scss */
+.menu > li[class*="icon-"] a {
+  padding-left: 2.22222222em;
+  z-index: 2;
+  position: relative;
+}
+/* line 110, ../sass/menu.scss */
 .menu,
 .menu ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-/* line 95, ../sass/menu.scss */
+/* line 116, ../sass/menu.scss */
 .menu ul {
   display: none;
 }
-/* line 100, ../sass/menu.scss */
+/* line 121, ../sass/menu.scss */
 .menu li {
   line-height: 2.22222222em;
   position: relative;
 }
-/* line 104, ../sass/menu.scss */
+/* line 125, ../sass/menu.scss */
 .menu li a {
   display: block;
   padding: 0 0.88888889em;
 }
-/* line 111, ../sass/menu.scss */
+/* line 132, ../sass/menu.scss */
 .menu li.menu-item-has-children > a {
   padding-right: 2.77777778em;
 }
-/* line 116, ../sass/menu.scss */
+/* line 137, ../sass/menu.scss */
 .menu li .show-sub-menu {
   background: none;
   border: 0;
@@ -2231,85 +2244,90 @@
   right: 0;
   text-align: center;
   top: 0;
+  z-index: 2;
   width: 2.77777778em;
 }
-/* line 129, ../sass/menu.scss */
+/* line 151, ../sass/menu.scss */
 .menu > li {
   line-height: 2.22222222em;
 }
-/* line 134, ../sass/menu.scss */
+/* line 156, ../sass/menu.scss */
 .menu > li.menu-item-has-children > a {
   padding-right: 2.77777778em;
 }
-/* line 139, ../sass/menu.scss */
+/* line 161, ../sass/menu.scss */
 .menu > li > .show-sub-menu {
   height: 2.22222222em;
   width: 2.77777778em;
 }
 
-@media screen and (min-width: 481px) {
-  /* line 148, ../sass/menu.scss */
+@media screen and (min-width: 521px) {
+  /* line 170, ../sass/menu.scss */
   .menu-awning {
     display: none;
   }
 
-  /* line 151, ../sass/menu.scss */
+  /* line 173, ../sass/menu.scss */
   .menu {
     display: block !important;
     position: relative;
   }
-  /* line 158, ../sass/menu.scss */
+  /* line 182, ../sass/menu.scss */
+  .menu > li[class*="icon-"]:before {
+    line-height: 2.77777778em;
+  }
+  /* line 186, ../sass/menu.scss */
   .menu ul {
     left: 0;
     top: 2.77777778em;
     z-index: 999;
     position: absolute;
   }
-  /* line 164, ../sass/menu.scss */
+  /* line 192, ../sass/menu.scss */
   .menu ul ul {
     left: 100%;
     top: 0;
   }
-  /* line 169, ../sass/menu.scss */
+  /* line 197, ../sass/menu.scss */
   .menu ul a {
     padding-left: 0.88888889em !important;
   }
-  /* line 175, ../sass/menu.scss */
+  /* line 203, ../sass/menu.scss */
   .menu li {
     white-space: nowrap;
   }
-  /* line 197, ../sass/menu.scss */
+  /* line 225, ../sass/menu.scss */
   .menu > li {
     display: inline-block;
     margin-left: -0.27777778em;
     line-height: 2.77777778em;
   }
-  /* line 202, ../sass/menu.scss */
+  /* line 230, ../sass/menu.scss */
   .menu > li:first-child {
     margin-left: 0;
   }
-  /* line 207, ../sass/menu.scss */
+  /* line 235, ../sass/menu.scss */
   .menu > li > ul {
     min-width: 100%;
   }
-  /* line 211, ../sass/menu.scss */
+  /* line 239, ../sass/menu.scss */
   .menu > li > .show-sub-menu {
     height: 2.77777778em;
   }
 }
-/* line 254, ../sass/menu.scss */
+/* line 282, ../sass/menu.scss */
 html.no-js .menu {
   display: block;
 }
-/* line 256, ../sass/menu.scss */
+/* line 284, ../sass/menu.scss */
 html.no-js .menu .show-sub-menu {
   display: none;
 }
-/* line 259, ../sass/menu.scss */
+/* line 287, ../sass/menu.scss */
 html.no-js .menu .menu-item-has-children > a {
   padding-right: 0.88888889em;
 }
-/* line 263, ../sass/menu.scss */
+/* line 291, ../sass/menu.scss */
 html.no-js .menu-awning {
   display: none;
 }
