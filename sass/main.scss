@@ -183,8 +183,10 @@ body {
    Menu
    ========================================================================== */
 
-.menu {
-    @media screen and (min-width: 481px){
+$new-nav-selector: ".masternav";
+
+#{$new-nav-selector}__menu {
+    @media screen and (min-width: 521px){
         ul {
             .icon-angle-down {
                 &:before {
@@ -222,14 +224,16 @@ body {
     }
 }
 
-.menu-awning {
+#{$new-nav-selector}__awning {
     color: white;
     background: #2A363B;
 }
 
-.menu-awning-button {
+#{$new-nav-selector}__awning__button {
     color: white;
     outline: none;
+    background: #20272B;
+    @include border-radius(2px);
 }
 
 /* ==========================================================================

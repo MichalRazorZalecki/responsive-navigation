@@ -6,17 +6,17 @@
 
 // MENU AWNING variables
 
-$nav-awning-selector: ".menu-awning";
+//$nav-awning-selector: ".menu-awning";
 $nav-awning-button-selector: ".menu-awning-button";
 $nav-awning-title-selector: ".menu-awning-title";
 
 $nav-awning-title-font-size: 18px;
 $nav-awning-button-font-size: 24px;
-$nav-awning-height: 50px; // == $nav-li-1st-lvl-height-mobile
+//$nav-awning-height: 50px; // == $nav-li-1st-lvl-height-mobile
 
 // NAV selectors
 
-$nav-menu-selector: ".menu";
+//$new-nav-selector+"__menu": ".menu";
 
 // NAV basic sizes
 
@@ -33,7 +33,6 @@ $nav-li-1st-lvl-show-sub-menu-height: $nav-li-1st-lvl-height;
 $nav-li-1st-lvl-show-sub-menu-height-mobile: $nav-li-1st-lvl-height-mobile;
 
 $nav-li-icon-width:  20px;
-$nav-li-icon-margin-left: 16px;
 $nav-li-icon-margin-right: 4px;
 
 // NAV basic settings
@@ -42,70 +41,79 @@ $nav-breakpoint: 521px;
 $nav-font-size: 18px;
 
 $nav-to-right: false;
-$nav-remove-side-padding: false;
 $nav-neg-marg-for-ib: -5px; // negative margin for inline-block to remove space
-$nav-narrow: false;
 
 // NAV sub menu indent
 
 $nav-sub-menu-max-deep: 4;
-$nav-sub-menu-start-indent: 16px;
+//$new-nav-basic-padding: 16px;
 $nav-sub-menu-class: ".sub-menu";
 
 @mixin sub-menu-indent($nav-sub-menu-nth-indent) {
 	$nav-sub-menu-class-nth: "";
-	// $nav-sub-menu-class-nth: $nav-sub-menu-class;
 	@for $i from 1 through ($nav-sub-menu-max-deep - 1) {
   		$nav-sub-menu-class-nth: $nav-sub-menu-class-nth + ' ' + $nav-sub-menu-class;
 	  	#{ $nav-sub-menu-class-nth } {
 	  		a {
-	  			padding-left: $nav-sub-menu-nth-indent * $i + $nav-sub-menu-start-indent;
+	  			padding-left: $nav-sub-menu-nth-indent * $i + $nav-sub-menu-nth-indent;
 	  		}
 	  	}
 	}
 }
 
+// NEW VARIABLES
+
+$new-nav-basic-padding: 20px;
+
+$new-nav-awning-font-size: 20px;
+
+$new-nav-awning-button-size: 30px;
+$new-nav-show-sub-menu-size: 30px;
+
+$new-nav-big-1stlvl-height: 50px;
+
+//$nav-awning-selector: ".menu__awning";
+
+$new-nav-selector: ".masternav";
+
+$new-nav-big-1stlvl-show-sub-menu-size: $new-nav-big-1stlvl-height;
+
+
 // NAV CSS
 
-#{$nav-awning-selector} {
+#{$new-nav-selector}__awning {
 	@include group;
-	line-height: em($nav-awning-height);
-	padding-left: em($nav-sub-menu-start-indent);
-	#{$nav-awning-title-selector} {
-		font-size: em($nav-awning-title-font-size);
-	}
-	#{$nav-awning-button-selector} {
-		font-size: em($nav-awning-button-font-size);
-		padding: 0 em($nav-sub-menu-start-indent, $nav-awning-button-font-size);
-		background: none;
+	line-height: rem($new-nav-big-1stlvl-height);
+	padding: 0 rem($new-nav-basic-padding);
+	font-size: rem($new-nav-awning-font-size);
+	position: relative;
+	#{$new-nav-selector}__awning__button {
+		padding: 0;
 		border: 0;
-		float: right;
-		height: em($nav-awning-height, $nav-awning-button-font-size);
+		background: none;
+
+		position: absolute;
+		right: rem($new-nav-basic-padding);
+		top: rem($new-nav-big-1stlvl-height - $new-nav-awning-button-size)/2;
+
+		width: rem($new-nav-awning-button-size);
+		height: rem($new-nav-awning-button-size);
 	}
 }
-#{$nav-menu-selector} {
+
+#{$new-nav-selector}__menu {
 	// -> root ul
 	@include group;
-	@include sub-menu-indent($nav-sub-menu-start-indent);
+	@include sub-menu-indent($new-nav-basic-padding);
 
 	display: none;
-	font-size: em($nav-font-size);
+	font-size: rem($nav-font-size);
 
-	> li[class*="icon-"] {
-		// -> li in root menu with icon
-        &:before {
-            float: left;
-			margin-left: em($nav-li-icon-margin-left, $nav-font-size);
-			width: em($nav-li-icon-width, $nav-font-size);
-			line-height: em($nav-li-1st-lvl-height-mobile, $nav-font-size);
-        }
-        a {
-        	padding-left: em($nav-li-icon-width + $nav-li-icon-margin-left + $nav-li-icon-margin-right, $nav-font-size);
-        	z-index: 2;
-        	position: relative;
-        }
+	li[class*="icon-"] {
+		&:before {
+			display: none;
+		}
     }
-
     &,
     ul {
     	// -> all ul in menu
@@ -115,78 +123,67 @@ $nav-sub-menu-class: ".sub-menu";
     }
     ul {
     	// -> all dropdown ul
-        //background: $nav-ul-background;
         display: none;
     }
     li {
     	// -> all li
-        line-height: em($nav-li-height, $nav-font-size);
+        line-height: rem($nav-li-height);
         position: relative;
         a {
         	// -> all a in all li
             display: block;
-            padding: 0 em($nav-sub-menu-start-indent, $nav-font-size);
+            padding: 0 rem($new-nav-basic-padding);
         }
-        &.menu-item-has-children{
-    	// -> all li which has submenu
-			> a {
-				// all a next to dropdown icon
-				padding-right: em($nav-li-show-sub-menu-width, $nav-font-size);
-			}
-		}
 		.show-sub-menu {
 			// dropdown icons
 			background: none;
 			border: 0;
-			height: em($nav-li-show-sub-menu-height, $nav-font-size);
 			padding: 0;
+
 			position: absolute;
-			right: 0;
-			text-align: center;
-			top: 0;
 			z-index: 2;
-			width: em($nav-li-show-sub-menu-width, $nav-font-size);
-		}
-    }
-	> li {
-    	// -> li in root menu
-		line-height: em($nav-li-1st-lvl-height-mobile, $nav-font-size);
-		&.menu-item-has-children{
-    	// -> li in root menu which has submenu
-			> a {
-				// all a next to dropdown icon
-				padding-right: em($nav-li-show-sub-menu-width, $nav-font-size);
-			}
-		}
-		> .show-sub-menu {
-			// -> dropdown icons in li in root (1st lvl)
-			height: em($nav-li-1st-lvl-show-sub-menu-height-mobile, $nav-font-size);
-			width: em($nav-li-show-sub-menu-width, $nav-font-size);
+			right: rem($new-nav-basic-padding);
+			top: rem($nav-li-height - $new-nav-show-sub-menu-size)/2;
+
+
+			width: rem($new-nav-show-sub-menu-size);
+			height: rem($new-nav-show-sub-menu-size);
 		}
     }
 }
 
 @media screen and (min-width: $nav-breakpoint){
-	#{$nav-awning-selector} {
+	#{$new-nav-selector}__awning {
 		display: none;
 	}
-	#{$nav-menu-selector} {
+	#{$new-nav-selector}__menu {
 		// -> root ul
 		display: block !important;
 		position: relative;
 		@if $nav-to-right {
 			text-align: right;
 		}
+
 		> li[class*="icon-"] {
-			// li in root (1st lvl) with icon
+			// -> li in root menu with icon
 	        &:before {
-				line-height: em($nav-li-1st-lvl-height, $nav-font-size);
+	        	display: block;
+	            float: left;
+				margin: 0 rem($nav-li-icon-margin-right) 0 rem($new-nav-basic-padding);
+				width: rem($nav-li-icon-width);
+				height: rem($new-nav-big-1stlvl-height);
+				line-height: em($new-nav-big-1stlvl-height, $nav-font-size); // em - problem with IE when line height in rem
+	        }
+	        > a {
+	        	padding-left: rem($nav-li-icon-width + $new-nav-basic-padding + $nav-li-icon-margin-right);
+	        	z-index: 2;
+	        	position: relative;
 	        }
 	    }
 		ul {
 			// -> submenus
 	        left: 0;
-	        top: em($nav-li-1st-lvl-height, $nav-font-size);
+	        top: rem($new-nav-big-1stlvl-height);
 	        z-index: 999;
             position: absolute;
 	        ul {
@@ -196,7 +193,7 @@ $nav-sub-menu-class: ".sub-menu";
 	        }
             a {
 				// -> all a in submenus
-				padding-left: em($nav-sub-menu-start-indent, $nav-font-size) !important;
+				padding-left: rem($new-nav-basic-padding) !important;
 			}
 
         }
@@ -210,85 +207,46 @@ $nav-sub-menu-class: ".sub-menu";
 				// -> all li in root which has submenu
 				> a {
 					// -> all a next to dropdown icon
-					@if $nav-narrow {
-						padding: 0 em($nav-li-show-sub-menu-width-narrow, $nav-font-size) 0 em($nav-sub-menu-start-indent, $nav-font-size);
-					}
+					padding-right: rem($new-nav-basic-padding + $new-nav-show-sub-menu-size);
 				}
 			}
 			> .show-sub-menu {
 				// -> dropdown icons
-				@if $nav-narrow {
-					width: em($nav-li-show-sub-menu-width-narrow, $nav-font-size);
-				}
+				right: rem($new-nav-basic-padding)/2;
 			}
 		}
         > li {
         	// li in root (1st lvl)
         	display: inline-block;
         	@if (strip-unit($nav-neg-marg-for-ib) != 0) {
-				margin-left: em($nav-neg-marg-for-ib, $nav-font-size);
+				margin-left: rem($nav-neg-marg-for-ib);
 	        	&:first-child {
 					margin-left: 0;
 	        	}
         	}
-        	line-height: em($nav-li-1st-lvl-height, $nav-font-size);
+        	line-height: rem($new-nav-big-1stlvl-height);
         	> ul {
 				// -> first submenu
 				min-width: 100%;
 			}
         	> .show-sub-menu {
 				// -> dropdown icons in li in root (1st lvl)
-				height: em($nav-li-1st-lvl-show-sub-menu-height, $nav-font-size);
-			}
-			@if $nav-remove-side-padding {
-				&:first-child {
-				// -> first li in root (1st lvl)
-					> a {
-						padding-left: 0;
-					}
-				}
-				&:last-child {
-				// -> last li in root (1st lvl)
-					> a {
-						padding-right: 0;
-					}
-					&.menu-item-has-children {
-						> .show-sub-menu {
-							text-align: right;
-						}
-						@if $nav-narrow {
-							> a {
-								padding-right: em($nav-li-show-sub-menu-width-narrow - $nav-sub-menu-start-indent/2, $nav-font-size);
-							}
-							> .show-sub-menu {
-								width: em($nav-li-show-sub-menu-width-narrow - $nav-sub-menu-start-indent/2, $nav-font-size);
-							}
-						} @else {
-							> a {
-								padding-right: em($nav-li-show-sub-menu-width - $nav-sub-menu-start-indent, $nav-font-size);
-							}
-							> .show-sub-menu {
-								width: em($nav-li-show-sub-menu-width - $nav-sub-menu-start-indent, $nav-font-size);
-							}
-						}
-					}
-				}
+				top: rem($new-nav-big-1stlvl-height - $new-nav-show-sub-menu-size)/2;
 			}
         }
 	}
 }
 
 html.no-js {
-	#{$nav-menu-selector} {
+	#{$new-nav-selector}__menu {
 		display: block;
-		.show-sub-menu {
-			display: none;
-		}
-		.menu-item-has-children > a {
-			padding-right: em($nav-sub-menu-start-indent, $nav-font-size)
+		li:hover {
+			> ul {
+				display: block;
+			}
 		}
 	}
-	#{$nav-awning-selector} {
+	#{$new-nav-selector}__awning {
 		display: none;
 	}
 }

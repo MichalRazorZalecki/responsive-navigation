@@ -33,16 +33,15 @@ $.fn.navHide = function (opts) {
    Menu Responsive Dropdown
    ========================================================================== */
 
-var $nav_awning = $('#mastermenu-awning');
+var $nav_awning = $('.masternav__awning');
+var $nav_awning_button = $('.masternav__awning__button', $nav_awning);
 
-var $nav = $('#mastermenu');
+var $nav_menu = $('.masternav__menu');
 
 //useful for WordPress
-//$nav.find('.sub-menu').before('<button class="show-sub-menu"><i class="icon icon-plus"></i></button>');
+//$nav_menu.find('.sub-menu').before('<button class="show-sub-menu icon-angle-down"></button>');
 
-var $nav_awning_button = $nav_awning.find('#awning-button');
-
-var $nav_has_sub_menus = $nav.find('.menu-item-has-children');
+var $nav_has_sub_menus = $nav_menu.find('.menu-item-has-children');
 
 var animationSpeed = 300;
 var hideSubMenuDelay = 300; //0 for closing immediately
@@ -61,7 +60,7 @@ $nav_has_sub_menus.each(function(index, element){
 		});
 
 		$(window).on("click", function(e){
-			if($(e.target).parents('#mastermenu').length == 0){
+			if($(e.target).parents('.masternav__menu').length == 0){
 				$('.sub-menu').removeClass('open').navHide({duration:animationSpeed});
 			}
 		});
@@ -80,12 +79,13 @@ $nav_has_sub_menus.each(function(index, element){
 
 if(!$('html').hasClass('touch')){
 
-	$nav.find('.show-sub-menu').on({focus : function(){
+	$nav_menu.find('.show-sub-menu').on({focus : function(e){
+		e.preventDefault();
 		if (!$(this).siblings('.sub-menu').hasClass('open'))
 			$(this).siblings('.sub-menu').addClass('open').navShow({duration:animationSpeed});;
 	}});
 
-	$nav.find('.sub-menu').each(function(index, element){
+	$nav_menu.find('.sub-menu').each(function(index, element){
 		$(this).find('> li:last-child > a').on('blur', function(){
 			$(element).removeClass('open').navHide({duration:animationSpeed});
 		});
@@ -93,7 +93,7 @@ if(!$('html').hasClass('touch')){
 }
 
 $nav_awning_button.on('click', function(){
-	$nav.slideToggle(animationSpeed);
+	$nav_menu.slideToggle(animationSpeed);
 });
 
 }(jQuery, this, this.document));
