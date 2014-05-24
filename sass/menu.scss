@@ -4,49 +4,31 @@
    Responsive Navigation (https://github.com/MichalRazorZalecki/responsive-navigation)
    =================================================================================== */
 
-// MENU AWNING variables
+// NAV settings
 
-//$nav-awning-selector: ".menu-awning";
-$nav-awning-button-selector: ".menu-awning-button";
-$nav-awning-title-selector: ".menu-awning-title";
+$nav-breakpoint: 524px;
+$nav-to-right: false;
 
-$nav-awning-title-font-size: 18px;
-$nav-awning-button-font-size: 24px;
-//$nav-awning-height: 50px; // == $nav-li-1st-lvl-height-mobile
+$nav-font-size: 18px;
+$nav-awning-font-size: 20px;
 
-// NAV selectors
-
-//$new-nav-selector+"__menu": ".menu";
-
-// NAV basic sizes
+$nav-neg-marg-for-ib: -5px; // negative margin for inline-block to remove space
 
 $nav-li-height: 40px;
+$nav-1st-li-height: 50px;
 
-$nav-li-show-sub-menu-width: 50px;
-$nav-li-show-sub-menu-width-narrow: 30px;
-$nav-li-show-sub-menu-height: $nav-li-height;
+$nav-show-sub-menu-width: 40px;
 
-$nav-li-1st-lvl-height: 50px;
-$nav-li-1st-lvl-height-mobile: $nav-li-height;
-
-$nav-li-1st-lvl-show-sub-menu-height: $nav-li-1st-lvl-height;
-$nav-li-1st-lvl-show-sub-menu-height-mobile: $nav-li-1st-lvl-height-mobile;
+$new-nav-basic-padding: 20px;
 
 $nav-li-icon-width:  20px;
-$nav-li-icon-margin-right: 4px;
+$nav-li-icon-margin-right: 5px;
 
-// NAV basic settings
-
-$nav-breakpoint: 521px;
-$nav-font-size: 18px;
-
-$nav-to-right: false;
-$nav-neg-marg-for-ib: -5px; // negative margin for inline-block to remove space
+$nav-selector: ".masternav";
 
 // NAV sub menu indent
 
 $nav-sub-menu-max-deep: 4;
-//$new-nav-basic-padding: 16px;
 $nav-sub-menu-class: ".sub-menu";
 
 @mixin sub-menu-indent($nav-sub-menu-nth-indent) {
@@ -61,47 +43,30 @@ $nav-sub-menu-class: ".sub-menu";
 	}
 }
 
-// NEW VARIABLES
+// NAV AWNING CSS
 
-$new-nav-basic-padding: 20px;
-
-$new-nav-awning-font-size: 20px;
-
-$new-nav-awning-button-size: 30px;
-$new-nav-show-sub-menu-size: 30px;
-
-$new-nav-big-1stlvl-height: 50px;
-
-//$nav-awning-selector: ".menu__awning";
-
-$new-nav-selector: ".masternav";
-
-$new-nav-big-1stlvl-show-sub-menu-size: $new-nav-big-1stlvl-height;
-
-
-// NAV CSS
-
-#{$new-nav-selector}__awning {
-	@include group;
-	line-height: rem($new-nav-big-1stlvl-height);
+#{$nav-selector}__awning {
+	line-height: rem($nav-1st-li-height);
 	padding: 0 rem($new-nav-basic-padding);
-	font-size: rem($new-nav-awning-font-size);
+	font-size: rem($nav-awning-font-size);
 	position: relative;
-	#{$new-nav-selector}__awning__button {
-		padding: 0;
-		border: 0;
-		background: none;
-
-		position: absolute;
-		right: rem($new-nav-basic-padding);
-		top: rem($new-nav-big-1stlvl-height - $new-nav-awning-button-size)/2;
-
-		width: rem($new-nav-awning-button-size);
-		height: rem($new-nav-awning-button-size);
-	}
 }
 
-#{$new-nav-selector}__menu {
+#{$nav-selector}__awning__button {
+	padding: 0;
+	border: 0;
+	background: none;
+
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: rem($nav-show-sub-menu-width + $new-nav-basic-padding);
+	height: rem($nav-1st-li-height);
+}
+
+// NAV MENU CSS
+
+#{$nav-selector}__menu {
 	// -> root ul
 	@include group;
 	@include sub-menu-indent($new-nav-basic-padding);
@@ -142,21 +107,21 @@ $new-nav-big-1stlvl-show-sub-menu-size: $new-nav-big-1stlvl-height;
 
 			position: absolute;
 			z-index: 2;
-			right: rem($new-nav-basic-padding);
-			top: rem($nav-li-height - $new-nav-show-sub-menu-size)/2;
 
+			right: 0;
+			top: 0;
 
-			width: rem($new-nav-show-sub-menu-size);
-			height: rem($new-nav-show-sub-menu-size);
+			width: rem($nav-show-sub-menu-width + $new-nav-basic-padding);
+			height: rem($nav-li-height);
 		}
     }
 }
 
 @media screen and (min-width: $nav-breakpoint){
-	#{$new-nav-selector}__awning {
+	#{$nav-selector}__awning {
 		display: none;
 	}
-	#{$new-nav-selector}__menu {
+	#{$nav-selector}__menu {
 		// -> root ul
 		display: block !important;
 		position: relative;
@@ -171,8 +136,8 @@ $new-nav-big-1stlvl-show-sub-menu-size: $new-nav-big-1stlvl-height;
 	            float: left;
 				margin: 0 rem($nav-li-icon-margin-right) 0 rem($new-nav-basic-padding);
 				width: rem($nav-li-icon-width);
-				height: rem($new-nav-big-1stlvl-height);
-				line-height: em($new-nav-big-1stlvl-height, $nav-font-size); // em - problem with IE when line height in rem
+				height: rem($nav-1st-li-height);
+				line-height: em($nav-1st-li-height, $nav-font-size); // em - problem with IE when line height in rem
 	        }
 	        > a {
 	        	padding-left: rem($nav-li-icon-width + $new-nav-basic-padding + $nav-li-icon-margin-right);
@@ -183,7 +148,7 @@ $new-nav-big-1stlvl-show-sub-menu-size: $new-nav-big-1stlvl-height;
 		ul {
 			// -> submenus
 	        left: 0;
-	        top: rem($new-nav-big-1stlvl-height);
+	        top: rem($nav-1st-li-height);
 	        z-index: 999;
             position: absolute;
 	        ul {
@@ -195,7 +160,6 @@ $new-nav-big-1stlvl-show-sub-menu-size: $new-nav-big-1stlvl-height;
 				// -> all a in submenus
 				padding-left: rem($new-nav-basic-padding) !important;
 			}
-
         }
 		li {
 			// -> all li in root
@@ -207,12 +171,12 @@ $new-nav-big-1stlvl-show-sub-menu-size: $new-nav-big-1stlvl-height;
 				// -> all li in root which has submenu
 				> a {
 					// -> all a next to dropdown icon
-					padding-right: rem($new-nav-basic-padding + $new-nav-show-sub-menu-size);
+					padding-right: rem($nav-show-sub-menu-width);
 				}
 			}
 			> .show-sub-menu {
 				// -> dropdown icons
-				right: rem($new-nav-basic-padding)/2;
+				width: rem($nav-show-sub-menu-width);
 			}
 		}
         > li {
@@ -224,21 +188,21 @@ $new-nav-big-1stlvl-show-sub-menu-size: $new-nav-big-1stlvl-height;
 					margin-left: 0;
 	        	}
         	}
-        	line-height: rem($new-nav-big-1stlvl-height);
+        	line-height: rem($nav-1st-li-height);
         	> ul {
 				// -> first submenu
 				min-width: 100%;
 			}
         	> .show-sub-menu {
 				// -> dropdown icons in li in root (1st lvl)
-				top: rem($new-nav-big-1stlvl-height - $new-nav-show-sub-menu-size)/2;
+				height: rem($nav-1st-li-height);
 			}
         }
 	}
 }
 
 html.no-js {
-	#{$new-nav-selector}__menu {
+	#{$nav-selector}__menu {
 		display: block;
 		li:hover {
 			> ul {
@@ -246,7 +210,7 @@ html.no-js {
 			}
 		}
 	}
-	#{$new-nav-selector}__awning {
+	#{$nav-selector}__awning {
 		display: none;
 	}
 }

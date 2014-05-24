@@ -201,25 +201,16 @@ $new-nav-selector: ".masternav";
     a,
     .show-sub-menu {
         outline: none;
-        &:focus {
+        color: white;
+        &:focus,
+        &:hover {
             color: #1B4B3A;
         }
     }
     li {
         background: #379F7A;
-    }
-    li {
-        > a,
-        > .show-sub-menu,
         &[class*="icon-"] {
             color: white;
-        }
-        &:hover {
-            > a,
-            > .show-sub-menu,
-            &[class*="icon-"] {
-                color: #1B4B3A;
-            }
         }
     }
 }

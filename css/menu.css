@@ -2148,32 +2148,27 @@
 /* ===================================================================================
    Responsive Navigation (https://github.com/MichalRazorZalecki/responsive-navigation)
    =================================================================================== */
-/* line 84, ../sass/menu.scss */
+/* line 48, ../sass/menu.scss */
 .masternav__awning {
   line-height: 3.125rem;
   padding: 0 1.25rem;
   font-size: 1.25rem;
   position: relative;
 }
-/* line 10, ../sass/_mixins.scss */
-.masternav__awning:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-/* line 90, ../sass/menu.scss */
-.masternav__awning .masternav__awning__button {
+
+/* line 55, ../sass/menu.scss */
+.masternav__awning__button {
   padding: 0;
   border: 0;
   background: none;
   position: absolute;
-  right: 1.25rem;
-  top: 0.625rem;
-  width: 1.875rem;
-  height: 1.875rem;
+  top: 0;
+  right: 0;
+  width: 3.75rem;
+  height: 3.125rem;
 }
 
-/* line 104, ../sass/menu.scss */
+/* line 69, ../sass/menu.scss */
 .masternav__menu {
   display: none;
   font-size: 1.125rem;
@@ -2184,138 +2179,138 @@
   display: table;
   clear: both;
 }
-/* line 57, ../sass/menu.scss */
+/* line 39, ../sass/menu.scss */
 .masternav__menu .sub-menu a {
   padding-left: 40px;
 }
-/* line 57, ../sass/menu.scss */
+/* line 39, ../sass/menu.scss */
 .masternav__menu .sub-menu .sub-menu a {
   padding-left: 60px;
 }
-/* line 57, ../sass/menu.scss */
+/* line 39, ../sass/menu.scss */
 .masternav__menu .sub-menu .sub-menu .sub-menu a {
   padding-left: 80px;
 }
-/* line 113, ../sass/menu.scss */
+/* line 78, ../sass/menu.scss */
 .masternav__menu li[class*="icon-"]:before {
   display: none;
 }
-/* line 118, ../sass/menu.scss */
+/* line 83, ../sass/menu.scss */
 .masternav__menu,
 .masternav__menu ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-/* line 124, ../sass/menu.scss */
+/* line 89, ../sass/menu.scss */
 .masternav__menu ul {
   display: none;
 }
-/* line 128, ../sass/menu.scss */
+/* line 93, ../sass/menu.scss */
 .masternav__menu li {
   line-height: 2.5rem;
   position: relative;
 }
-/* line 132, ../sass/menu.scss */
+/* line 97, ../sass/menu.scss */
 .masternav__menu li a {
   display: block;
   padding: 0 1.25rem;
 }
-/* line 137, ../sass/menu.scss */
+/* line 102, ../sass/menu.scss */
 .masternav__menu li .show-sub-menu {
   background: none;
   border: 0;
   padding: 0;
   position: absolute;
   z-index: 2;
-  right: 1.25rem;
-  top: 0.3125rem;
-  width: 1.875rem;
-  height: 1.875rem;
+  right: 0;
+  top: 0;
+  width: 3.75rem;
+  height: 2.5rem;
 }
 
-@media screen and (min-width: 521px) {
-  /* line 156, ../sass/menu.scss */
+@media screen and (min-width: 524px) {
+  /* line 121, ../sass/menu.scss */
   .masternav__awning {
     display: none;
   }
 
-  /* line 159, ../sass/menu.scss */
+  /* line 124, ../sass/menu.scss */
   .masternav__menu {
     display: block !important;
     position: relative;
   }
-  /* line 169, ../sass/menu.scss */
+  /* line 134, ../sass/menu.scss */
   .masternav__menu > li[class*="icon-"]:before {
     display: block;
     float: left;
-    margin: 0 0.25rem 0 1.25rem;
+    margin: 0 0.3125rem 0 1.25rem;
     width: 1.25rem;
     height: 3.125rem;
     line-height: 2.77777778em;
   }
-  /* line 177, ../sass/menu.scss */
+  /* line 142, ../sass/menu.scss */
   .masternav__menu > li[class*="icon-"] > a {
-    padding-left: 2.75rem;
+    padding-left: 2.8125rem;
     z-index: 2;
     position: relative;
   }
-  /* line 183, ../sass/menu.scss */
+  /* line 148, ../sass/menu.scss */
   .masternav__menu ul {
     left: 0;
     top: 3.125rem;
     z-index: 999;
     position: absolute;
   }
-  /* line 189, ../sass/menu.scss */
+  /* line 154, ../sass/menu.scss */
   .masternav__menu ul ul {
     left: 100%;
     top: 0;
   }
-  /* line 194, ../sass/menu.scss */
+  /* line 159, ../sass/menu.scss */
   .masternav__menu ul a {
     padding-left: 1.25rem !important;
   }
-  /* line 200, ../sass/menu.scss */
+  /* line 164, ../sass/menu.scss */
   .masternav__menu li {
     white-space: nowrap;
   }
-  /* line 208, ../sass/menu.scss */
+  /* line 172, ../sass/menu.scss */
   .masternav__menu li.menu-item-has-children > a {
-    padding-right: 3.125rem;
+    padding-right: 2.5rem;
   }
-  /* line 213, ../sass/menu.scss */
+  /* line 177, ../sass/menu.scss */
   .masternav__menu li > .show-sub-menu {
-    right: 0.625rem;
+    width: 2.5rem;
   }
-  /* line 218, ../sass/menu.scss */
+  /* line 182, ../sass/menu.scss */
   .masternav__menu > li {
     display: inline-block;
     margin-left: -0.3125rem;
     line-height: 3.125rem;
   }
-  /* line 223, ../sass/menu.scss */
+  /* line 187, ../sass/menu.scss */
   .masternav__menu > li:first-child {
     margin-left: 0;
   }
-  /* line 228, ../sass/menu.scss */
+  /* line 192, ../sass/menu.scss */
   .masternav__menu > li > ul {
     min-width: 100%;
   }
-  /* line 232, ../sass/menu.scss */
+  /* line 196, ../sass/menu.scss */
   .masternav__menu > li > .show-sub-menu {
-    top: 0.625rem;
+    height: 3.125rem;
   }
 }
-/* line 241, ../sass/menu.scss */
+/* line 205, ../sass/menu.scss */
 html.no-js .masternav__menu {
   display: block;
 }
-/* line 244, ../sass/menu.scss */
+/* line 208, ../sass/menu.scss */
 html.no-js .masternav__menu li:hover > ul {
   display: block;
 }
-/* line 249, ../sass/menu.scss */
+/* line 213, ../sass/menu.scss */
 html.no-js .masternav__awning {
   display: none;
 }
