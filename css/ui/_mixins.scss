@@ -1,0 +1,39 @@
+/*------------------------------------*\
+    REM
+\*------------------------------------*/
+
+@function em($target, $context: $base-font-size) {
+    @return ($target / $context) * 1em;
+}
+
+@function rem($target, $context: $base-font-size) {
+    @return ($target / $context) * 1rem;
+}
+
+/*------------------------------------*\
+    CSS3
+\*------------------------------------*/
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+       -moz-border-radius: $radius;
+            border-radius: $radius;
+}
+
+@mixin box-sizing($type: border-box) {
+    -webkit-box-sizing: $type;
+       -moz-box-sizing: $type;
+            box-sizing: $type;
+}
+
+/*------------------------------------*\
+    CLEARFIX/GROUP
+\*------------------------------------*/
+
+@mixin group{
+	&:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+}

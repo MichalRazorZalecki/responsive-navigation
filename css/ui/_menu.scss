@@ -1,10 +1,10 @@
-@import "global-settings";
-
 /* ===================================================================================
    Responsive Navigation (https://github.com/MichalRazorZalecki/responsive-navigation)
    =================================================================================== */
 
-// NAV settings
+/*------------------------------------*\
+    MENU SETTINGS
+\*------------------------------------*/
 
 $nav-breakpoint: 524px;
 $nav-to-right: false;
@@ -43,7 +43,9 @@ $nav-sub-menu-class: ".sub-menu";
 	}
 }
 
-// NAV AWNING CSS
+/*------------------------------------*\
+    MENU AWNING
+\*------------------------------------*/
 
 #{$nav-selector}__awning {
 	line-height: rem($nav-1st-li-height);
@@ -64,7 +66,9 @@ $nav-sub-menu-class: ".sub-menu";
 	height: rem($nav-1st-li-height);
 }
 
-// NAV MENU CSS
+/*------------------------------------*\
+    MENU SKELETON
+\*------------------------------------*/
 
 #{$nav-selector}__menu {
 	// -> root ul
@@ -213,4 +217,48 @@ html.no-js {
 	#{$nav-selector}__awning {
 		display: none;
 	}
+}
+
+/*------------------------------------*\
+    MENU APPEARANCE
+\*------------------------------------*/
+
+#{$nav-selector}__menu {
+    @media screen and (min-width: 521px){
+        ul {
+            .icon-angle-down {
+                &:before {
+                    content: $fa-var-angle-right;
+                }
+            }
+        }
+    }
+    a {
+        text-decoration: none;
+    }
+    a,
+    .show-sub-menu {
+        outline: none;
+        color: white;
+        &:focus,
+        &:hover {
+            color: #1B4B3A;
+        }
+    }
+    li {
+        background: #379F7A;
+        &[class*="icon-"] {
+            color: white;
+        }
+    }
+}
+
+#{$nav-selector}__awning {
+    color: white;
+    background: #2A363B;
+}
+
+#{$nav-selector}__awning__button {
+    color: white;
+    outline: none;
 }
