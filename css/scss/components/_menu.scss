@@ -6,30 +6,31 @@
     MENU SETTINGS
 \*------------------------------------*/
 
-$nav-breakpoint: 524px;
-$nav-to-right: false;
+$nav-breakpoint: 524px !default;
+$nav-to-right: false !default;
+$nav-sides-margin: true !default;
 
-$nav-font-size: 18px;
-$nav-awning-font-size: 20px;
+$nav-font-size: 18px !default;
+$nav-awning-font-size: 20px !default;
 
-$nav-neg-marg-for-ib: -5px; // negative margin for inline-block to remove space
+$nav-neg-marg-for-ib: -5px !default; // negative margin for inline-block to remove space
 
-$nav-li-height: 40px;
-$nav-1st-li-height: 50px;
+$nav-li-height: 40px !default;
+$nav-1st-li-height: 50px !default;
 
-$nav-show-sub-menu-width: 40px;
+$nav-show-sub-menu-width: 40px !default;
 
-$new-nav-basic-padding: 20px;
+$nav-basic-padding: 20px !default;
 
-$nav-li-icon-width:  20px;
-$nav-li-icon-margin-right: 5px;
+$nav-li-icon-width:  20px !default;
+$nav-li-icon-margin-right: 5px !default;
 
-$nav-selector: ".masternav";
+$nav-selector: ".masternav" !default;
 
 // NAV sub menu indent
 
-$nav-sub-menu-max-deep: 4;
-$nav-sub-menu-class: ".sub-menu";
+$nav-sub-menu-max-deep: 4 !default;
+$nav-sub-menu-class: ".sub-menu" !default;
 
 @mixin sub-menu-indent($nav-sub-menu-nth-indent) {
 	$nav-sub-menu-class-nth: "";
@@ -49,7 +50,7 @@ $nav-sub-menu-class: ".sub-menu";
 
 #{$nav-selector}__awning {
 	line-height: rem($nav-1st-li-height);
-	padding: 0 rem($new-nav-basic-padding);
+	padding: 0 rem($nav-basic-padding);
 	font-size: rem($nav-awning-font-size);
 	position: relative;
 }
@@ -62,7 +63,7 @@ $nav-sub-menu-class: ".sub-menu";
 	position: absolute;
 	top: 0;
 	right: 0;
-	width: rem($nav-show-sub-menu-width + $new-nav-basic-padding);
+	width: rem($nav-show-sub-menu-width + $nav-basic-padding);
 	height: rem($nav-1st-li-height);
 }
 
@@ -73,9 +74,13 @@ $nav-sub-menu-class: ".sub-menu";
 #{$nav-selector}__menu {
 	// -> root ul
 	@include group;
-	@include sub-menu-indent($new-nav-basic-padding);
+	@include sub-menu-indent($nav-basic-padding);
 
 	display: none;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
 	font-size: rem($nav-font-size);
 
 	li[class*="icon-"] {
@@ -83,16 +88,12 @@ $nav-sub-menu-class: ".sub-menu";
 			display: none;
 		}
     }
-    &,
-    ul {
-    	// -> all ul in menu
-	    list-style: none;
-	    padding: 0;
-    	margin: 0;
-    }
     ul {
     	// -> all dropdown ul
         display: none;
+        list-style: none;
+	    padding: 0;
+    	margin: 0;
     }
     li {
     	// -> all li
@@ -101,7 +102,7 @@ $nav-sub-menu-class: ".sub-menu";
         a {
         	// -> all a in all li
             display: block;
-            padding: 0 rem($new-nav-basic-padding);
+            padding: 0 rem($nav-basic-padding);
         }
 		.show-sub-menu {
 			// dropdown icons
@@ -115,7 +116,7 @@ $nav-sub-menu-class: ".sub-menu";
 			right: 0;
 			top: 0;
 
-			width: rem($nav-show-sub-menu-width + $new-nav-basic-padding);
+			width: rem($nav-show-sub-menu-width + $nav-basic-padding);
 			height: rem($nav-li-height);
 		}
     }
@@ -129,8 +130,9 @@ $nav-sub-menu-class: ".sub-menu";
 		// -> root ul
 		display: block !important;
 		position: relative;
-		@if $nav-to-right {
-			text-align: right;
+
+		@if not $nav-sides-margin {
+			margin: 0 rem(-$nav-basic-padding);
 		}
 
 		> li[class*="icon-"] {
@@ -138,13 +140,13 @@ $nav-sub-menu-class: ".sub-menu";
 	        &:before {
 	        	display: block;
 	            float: left;
-				margin: 0 rem($nav-li-icon-margin-right) 0 rem($new-nav-basic-padding);
+				margin: 0 rem($nav-li-icon-margin-right) 0 rem($nav-basic-padding);
 				width: rem($nav-li-icon-width);
 				height: rem($nav-1st-li-height);
 				line-height: em($nav-1st-li-height, $nav-font-size); // em - problem with IE when line height in rem
 	        }
 	        > a {
-	        	padding-left: rem($nav-li-icon-width + $new-nav-basic-padding + $nav-li-icon-margin-right);
+	        	padding-left: rem($nav-li-icon-width + $nav-basic-padding + $nav-li-icon-margin-right);
 	        	z-index: 2;
 	        	position: relative;
 	        }
@@ -162,7 +164,7 @@ $nav-sub-menu-class: ".sub-menu";
 	        }
             a {
 				// -> all a in submenus
-				padding-left: rem($new-nav-basic-padding) !important;
+				padding-left: rem($nav-basic-padding) !important;
 			}
         }
 		li {
@@ -223,6 +225,22 @@ html.no-js {
     MENU APPEARANCE
 \*------------------------------------*/
 
+$nav-color: white !default;
+$nav-color-hover: #3F3F3F !default;
+$nav-bg: #707070 !default;
+
+$nav-awning-color: white !default;
+$nav-awning-bg: #2A363B !default;
+
+/*
+$nav-color: black;
+$nav-color-hover: blue;
+$nav-bg: white;
+
+$nav-awning-color: white;
+$nav-awning-bg: #2A363B;
+*/
+
 #{$nav-selector}__menu {
     @media screen and (min-width: 521px){
         ul {
@@ -239,26 +257,26 @@ html.no-js {
     a,
     .show-sub-menu {
         outline: none;
-        color: white;
+        color: $nav-color;
         &:focus,
         &:hover {
-            color: #1B4B3A;
+            color: $nav-color-hover;
         }
     }
     li {
-        background: #379F7A;
+        background: $nav-bg;
         &[class*="icon-"] {
-            color: white;
+            color: $nav-color;
         }
     }
 }
 
 #{$nav-selector}__awning {
-    color: white;
-    background: #2A363B;
+    color: $nav-awning-color;
+    background: $nav-awning-bg;
 }
 
 #{$nav-selector}__awning__button {
-    color: white;
+    color: $nav-awning-color;
     outline: none;
 }

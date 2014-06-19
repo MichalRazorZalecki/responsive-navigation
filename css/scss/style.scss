@@ -1,9 +1,9 @@
-@import "font-awesome/font-awesome";
+@import "vendors/font-awesome/font-awesome";
 
-$base-font-size: 16px;
+@import "helpers/variables";
+@import "helpers/mixins";
 
-@import "ui/mixins";
-@import "ui/menu";
+@import "components/menu";
 
 *,
 *:after,
