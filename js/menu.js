@@ -1,80 +1,99 @@
-;(function ($, window, document, undefined) {
+;(function ($) {
 	"use strict";
 
-/* ==========================================================================
-   Menu Responsive Dropdown
-   ========================================================================== */
+/* ================================
+   RWD Navigation
+   ================================ */
 
-var $nav_menu = $('.masternav__menu'),
-	$nav_sub_menus = $('.sub-menu', $nav_menu),
-	$nav_has_sub_menus = $('.menu-item-has-children', $nav_menu),
+$.fn.rwdNav = function(options) {
 
-	animationSpeed = 300,
-	hideSubMenuDelay = 300; //0 for closing immediately
+	var settings = $.extend({
+		subMenu: ".sub-menu",
+		hasSubMenu: ".menu-item-has-children",
+		awningButton: ".masternav__awning__button",
+		animationSpeed: 300,
+		hideSubMenuDelay: 300, //0 for closing immediately
+		wordpressSupport: false,
+		forceTouchScreen: false, // force touch screen
+	}, options);
 
-//useful for WordPress
-//$nav_sub_menus.before('<button class="show-sub-menu icon-angle-down"></button>');
+	// fix Modernizr problem with touch screens
+	if ( window.navigator.userAgent.indexOf("Windows Phone") > 0 )
+		$("html").addClass("touch");
 
-function closeNav() {
-	$(this).removeClass('open').slideUp({duration:animationSpeed});;
-}
+	if ( settings.forceTouchScreen )
+		$("html").addClass("touch");
 
-function openNav() {
-	$(this).addClass('open').slideDown({duration:animationSpeed});
-}
+	if ( settings.wordpressSupport )
+		$nav_sub_menus.before("<button class=\"show-sub-menu icon-angle-down\"></button>");
 
-// Open/close on click (touch screens) and focus on "tab"
-$('.show-sub-menu', $nav_menu).each(function(i, element){
-	var $submenu = $(element).siblings('.sub-menu');
-	$(element).on({
-		click : function(e){
-			if ($('html').hasClass('touch'))
-				if($submenu.hasClass('open'))
-					closeNav.call($submenu);
-				else {
-					closeNav.call($nav_has_sub_menus.not($submenu.parents('.menu-item-has-children')).find('.sub-menu'));
-					openNav.call($submenu);
-				}
-		},
-		keyup : function(e){
-			openNav.call($submenu);
-		}
-	});
-});
+	var $nav_menu = this,
+		$nav_sub_menus = $(settings.subMenu, $nav_menu),
+		$nav_has_sub_menus = $(settings.hasSubMenu, $nav_menu);
 
-// Open/close on mouseenter/mouseleave (standard screens)
-if (!$('html').hasClass('touch')){
-	$nav_has_sub_menus.each(function(index, element){
-		var hover_timer;
-		var $submenu = $('> .sub-menu', element);
-		$(element).on({mouseenter : function(){
-			clearTimeout(hover_timer);
-			if(!$submenu.hasClass('open'))
+	function closeNav() {
+		$(this).removeClass("open").slideUp({duration:settings.animationSpeed});;
+	}
+
+	function openNav() {
+		$(this).addClass("open").slideDown({duration:settings.animationSpeed});
+	}
+
+	// Open/close on click (touch screens) and focus on "tab"
+	$(".show-sub-menu", $nav_menu).each(function(i, element){
+		var $submenu = $(element).siblings(settings.subMenu);
+		$(element).on({
+			click : function (e) {
+				if ( $("html").hasClass("touch") )
+					if( $submenu.hasClass("open") )
+						closeNav.call($submenu);
+					else {
+						closeNav.call($nav_has_sub_menus.not($submenu.parents(settings.hasSubMenu)).find(settings.subMenu));
+						openNav.call($submenu);
+					}
+			},
+			keyup : function (e) {
 				openNav.call($submenu);
-		}, mouseleave : function(){
-			hover_timer = setTimeout(function(){
-				closeNav.call($submenu);
-			}, hideSubMenuDelay);
-		}});
+			}
+		});
 	});
+
+	// Close submenus when clicking outside menu
+	$(window).on("click", function (e) {
+		if ($(e.target).parents($nav_menu.selector).length == 0)
+			closeNav.call($nav_sub_menus);
+	});
+
+	// Open/close on mouseenter/mouseleave (standard screens)
+	if (!$("html").hasClass("touch")){
+		$nav_has_sub_menus.each(function(index, element){
+			var hover_timer;
+			var $submenu = $("> " + settings.subMenu, element);
+			$(element).on({mouseenter : function () {
+				clearTimeout(hover_timer);
+				if(!$submenu.hasClass("open"))
+					openNav.call($submenu);
+			}, mouseleave : function () {
+				hover_timer = setTimeout(function () {
+					closeNav.call($submenu);
+				}, settings.hideSubMenuDelay);
+			}});
+		});
+	}
+
+	// Close after last "tab"
+	$nav_sub_menus.each(function(index, element){
+		$(element).find("> li:last-child > a").on("blur", function () {
+			closeNav.call(element);
+		});
+	});
+
+	// Open/close menu for smartphones
+	$(settings.awningButton).on("click", function () {
+		$nav_menu.slideToggle(settings.animationSpeed);
+	});
+
+	return this;
 }
 
-// Close submenus when clicking outside menu
-$(window).on("click", function(e){
-	if ($(e.target).parents('.masternav__menu').length == 0)
-		closeNav.call($nav_sub_menus);
-});
-
-// Close after last "tab"
-$nav_sub_menus.each(function(index, element){
-	$(element).find('> li:last-child > a').on('blur', function(){
-		closeNav.call(element);
-	});
-});
-
-// Open/close menu for smartphones
-$('.masternav__awning__button').on('click', function(){
-	$nav_menu.slideToggle(animationSpeed);
-});
-
-}(jQuery, this, this.document));
+})(jQuery);
