@@ -39,6 +39,7 @@ $nav-sub-menu-class: ".sub-menu" !default;
 	  	#{ $nav-sub-menu-class-nth } {
 	  		a {
 	  			padding-left: $nav-sub-menu-nth-indent * $i + $nav-sub-menu-nth-indent;
+	  			padding-left: rem($nav-sub-menu-nth-indent * $i + $nav-sub-menu-nth-indent);
 	  		}
 	  	}
 	}
@@ -49,8 +50,11 @@ $nav-sub-menu-class: ".sub-menu" !default;
 \*------------------------------------*/
 
 #{$nav-selector}__awning {
+	line-height: $nav-1st-li-height;
 	line-height: rem($nav-1st-li-height);
+	padding: 0 $nav-basic-padding;
 	padding: 0 rem($nav-basic-padding);
+	font-size: $nav-awning-font-size;
 	font-size: rem($nav-awning-font-size);
 	position: relative;
 }
@@ -63,7 +67,9 @@ $nav-sub-menu-class: ".sub-menu" !default;
 	position: absolute;
 	top: 0;
 	right: 0;
+	width: $nav-show-sub-menu-width + $nav-basic-padding;
 	width: rem($nav-show-sub-menu-width + $nav-basic-padding);
+	height: $nav-1st-li-height;
 	height: rem($nav-1st-li-height);
 }
 
@@ -81,6 +87,7 @@ $nav-sub-menu-class: ".sub-menu" !default;
 	padding: 0;
 	margin: 0;
 
+	font-size: $nav-font-size;
 	font-size: rem($nav-font-size);
 
 	li[class*="icon-"] {
@@ -88,7 +95,7 @@ $nav-sub-menu-class: ".sub-menu" !default;
 			display: none;
 		}
     }
-    ul {
+    .sub-menu {
     	// -> all dropdown ul
         display: none;
         list-style: none;
@@ -97,11 +104,13 @@ $nav-sub-menu-class: ".sub-menu" !default;
     }
     li {
     	// -> all li
+        line-height: $nav-li-height;
         line-height: rem($nav-li-height);
         position: relative;
         a {
         	// -> all a in all li
             display: block;
+            padding: 0 $nav-basic-padding;
             padding: 0 rem($nav-basic-padding);
         }
 		.show-sub-menu {
@@ -116,7 +125,9 @@ $nav-sub-menu-class: ".sub-menu" !default;
 			right: 0;
 			top: 0;
 
+			width: $nav-show-sub-menu-width + $nav-basic-padding;
 			width: rem($nav-show-sub-menu-width + $nav-basic-padding);
+			height: $nav-li-height;
 			height: rem($nav-li-height);
 		}
     }
@@ -140,30 +151,36 @@ $nav-sub-menu-class: ".sub-menu" !default;
 	        &:before {
 	        	display: block;
 	            float: left;
+				margin: 0 $nav-li-icon-margin-right 0 $nav-basic-padding;
 				margin: 0 rem($nav-li-icon-margin-right) 0 rem($nav-basic-padding);
+				width: $nav-li-icon-width;
 				width: rem($nav-li-icon-width);
+				height: $nav-1st-li-height;
 				height: rem($nav-1st-li-height);
 				line-height: em($nav-1st-li-height, $nav-font-size); // em - problem with IE when line height in rem
 	        }
 	        > a {
+	        	padding-left: $nav-li-icon-width + $nav-basic-padding + $nav-li-icon-margin-right;
 	        	padding-left: rem($nav-li-icon-width + $nav-basic-padding + $nav-li-icon-margin-right);
 	        	z-index: 2;
 	        	position: relative;
 	        }
 	    }
-		ul {
+		.sub-menu {
 			// -> submenus
 	        left: 0;
+	        top: $nav-1st-li-height;
 	        top: rem($nav-1st-li-height);
 	        z-index: 999;
             position: absolute;
-	        ul {
+	        .sub-menu {
 	        	// -> 2nd+ lvs submenus
 	            left: 100%;
 	            top: 0;
 	        }
             a {
 				// -> all a in submenus
+				padding-left: $nav-basic-padding !important;
 				padding-left: rem($nav-basic-padding) !important;
 			}
         }
@@ -177,11 +194,13 @@ $nav-sub-menu-class: ".sub-menu" !default;
 				// -> all li in root which has submenu
 				> a {
 					// -> all a next to dropdown icon
+					padding-right: $nav-show-sub-menu-width;
 					padding-right: rem($nav-show-sub-menu-width);
 				}
 			}
 			> .show-sub-menu {
 				// -> dropdown icons
+				width: $nav-show-sub-menu-width;
 				width: rem($nav-show-sub-menu-width);
 			}
 		}
@@ -189,11 +208,13 @@ $nav-sub-menu-class: ".sub-menu" !default;
         	// li in root (1st lvl)
         	display: inline-block;
         	@if (strip-unit($nav-neg-marg-for-ib) != 0) {
+				margin-left: $nav-neg-marg-for-ib;
 				margin-left: rem($nav-neg-marg-for-ib);
 	        	&:first-child {
 					margin-left: 0;
 	        	}
         	}
+        	line-height: $nav-1st-li-height;
         	line-height: rem($nav-1st-li-height);
         	> ul {
 				// -> first submenu
@@ -201,6 +222,7 @@ $nav-sub-menu-class: ".sub-menu" !default;
 			}
         	> .show-sub-menu {
 				// -> dropdown icons in li in root (1st lvl)
+				height: $nav-1st-li-height;
 				height: rem($nav-1st-li-height);
 			}
         }
@@ -232,21 +254,12 @@ $nav-bg: #707070 !default;
 $nav-awning-color: white !default;
 $nav-awning-bg: #2A363B !default;
 
-/*
-$nav-color: black;
-$nav-color-hover: blue;
-$nav-bg: white;
-
-$nav-awning-color: white;
-$nav-awning-bg: #2A363B;
-*/
-
 #{$nav-selector}__menu {
     @media screen and (min-width: 521px){
         ul {
             .icon-angle-down {
                 &:before {
-                    content: $fa-var-angle-right;
+                    content: '\f105';
                 }
             }
         }

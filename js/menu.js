@@ -24,12 +24,12 @@ $.fn.rwdNav = function(options) {
 	if ( settings.forceTouchScreen )
 		$("html").addClass("touch");
 
-	if ( settings.wordpressSupport )
-		$nav_sub_menus.before("<button class=\"show-sub-menu icon-angle-down\"></button>");
-
 	var $nav_menu = this,
 		$nav_sub_menus = $(settings.subMenu, $nav_menu),
 		$nav_has_sub_menus = $(settings.hasSubMenu, $nav_menu);
+
+	if ( settings.wordpressSupport )
+		$nav_sub_menus.before("<button class=\"show-sub-menu icon-angle-down\"></button>");
 
 	function closeNav() {
 		$(this).removeClass("open").slideUp({duration:settings.animationSpeed});;

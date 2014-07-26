@@ -2522,15 +2522,18 @@
 /*------------------------------------*\
     MENU AWNING
 \*------------------------------------*/
-/* line 51, components\_menu.scss */
+/* line 52, components\_menu.scss */
 .masternav__awning {
+  line-height: 50px;
   line-height: 3.125rem;
+  padding: 0 20px;
   padding: 0 1.25rem;
+  font-size: 20px;
   font-size: 1.25rem;
   position: relative;
 }
 
-/* line 58, components\_menu.scss */
+/* line 62, components\_menu.scss */
 .masternav__awning__button {
   padding: 0;
   border: 0;
@@ -2538,19 +2541,22 @@
   position: absolute;
   top: 0;
   right: 0;
+  width: 60px;
   width: 3.75rem;
+  height: 50px;
   height: 3.125rem;
 }
 
 /*------------------------------------*\
     MENU SKELETON
 \*------------------------------------*/
-/* line 74, components\_menu.scss */
+/* line 80, components\_menu.scss */
 .masternav__menu {
   display: none;
   list-style: none;
   padding: 0;
   margin: 0;
+  font-size: 18px;
   font-size: 1.125rem;
 }
 /* line 34, helpers\_mixins.scss */
@@ -2562,37 +2568,42 @@
 /* line 40, components\_menu.scss */
 .masternav__menu .sub-menu a {
   padding-left: 40px;
+  padding-left: 2.5rem;
 }
 /* line 40, components\_menu.scss */
 .masternav__menu .sub-menu .sub-menu a {
   padding-left: 60px;
+  padding-left: 3.75rem;
 }
 /* line 40, components\_menu.scss */
 .masternav__menu .sub-menu .sub-menu .sub-menu a {
   padding-left: 80px;
+  padding-left: 5rem;
 }
-/* line 87, components\_menu.scss */
+/* line 94, components\_menu.scss */
 .masternav__menu li[class*="icon-"]:before {
   display: none;
 }
-/* line 91, components\_menu.scss */
-.masternav__menu ul {
+/* line 98, components\_menu.scss */
+.masternav__menu .sub-menu {
   display: none;
   list-style: none;
   padding: 0;
   margin: 0;
 }
-/* line 98, components\_menu.scss */
+/* line 105, components\_menu.scss */
 .masternav__menu li {
+  line-height: 40px;
   line-height: 2.5rem;
   position: relative;
 }
-/* line 102, components\_menu.scss */
+/* line 110, components\_menu.scss */
 .masternav__menu li a {
   display: block;
+  padding: 0 20px;
   padding: 0 1.25rem;
 }
-/* line 107, components\_menu.scss */
+/* line 116, components\_menu.scss */
 .masternav__menu li .show-sub-menu {
   background: none;
   border: 0;
@@ -2601,92 +2612,105 @@
   z-index: 2;
   right: 0;
   top: 0;
+  width: 60px;
   width: 3.75rem;
+  height: 40px;
   height: 2.5rem;
 }
 
 @media screen and (min-width: 524px) {
-  /* line 126, components\_menu.scss */
+  /* line 137, components\_menu.scss */
   .masternav__awning {
     display: none;
   }
 
-  /* line 129, components\_menu.scss */
+  /* line 140, components\_menu.scss */
   .masternav__menu {
     display: block !important;
     position: relative;
   }
-  /* line 140, components\_menu.scss */
+  /* line 151, components\_menu.scss */
   .masternav__menu > li[class*="icon-"]:before {
     display: block;
     float: left;
+    margin: 0 5px 0 20px;
     margin: 0 0.3125rem 0 1.25rem;
+    width: 20px;
     width: 1.25rem;
+    height: 50px;
     height: 3.125rem;
     line-height: 2.77778em;
   }
-  /* line 148, components\_menu.scss */
+  /* line 162, components\_menu.scss */
   .masternav__menu > li[class*="icon-"] > a {
+    padding-left: 45px;
     padding-left: 2.8125rem;
     z-index: 2;
     position: relative;
   }
-  /* line 154, components\_menu.scss */
-  .masternav__menu ul {
+  /* line 169, components\_menu.scss */
+  .masternav__menu .sub-menu {
     left: 0;
+    top: 50px;
     top: 3.125rem;
     z-index: 999;
     position: absolute;
   }
-  /* line 160, components\_menu.scss */
-  .masternav__menu ul ul {
+  /* line 176, components\_menu.scss */
+  .masternav__menu .sub-menu .sub-menu {
     left: 100%;
     top: 0;
   }
-  /* line 165, components\_menu.scss */
-  .masternav__menu ul a {
+  /* line 181, components\_menu.scss */
+  .masternav__menu .sub-menu a {
+    padding-left: 20px !important;
     padding-left: 1.25rem !important;
   }
-  /* line 170, components\_menu.scss */
+  /* line 187, components\_menu.scss */
   .masternav__menu li {
     white-space: nowrap;
   }
-  /* line 178, components\_menu.scss */
+  /* line 195, components\_menu.scss */
   .masternav__menu li.menu-item-has-children > a {
+    padding-right: 40px;
     padding-right: 2.5rem;
   }
-  /* line 183, components\_menu.scss */
+  /* line 201, components\_menu.scss */
   .masternav__menu li > .show-sub-menu {
+    width: 40px;
     width: 2.5rem;
   }
-  /* line 188, components\_menu.scss */
+  /* line 207, components\_menu.scss */
   .masternav__menu > li {
     display: inline-block;
+    margin-left: -5px;
     margin-left: -0.3125rem;
+    line-height: 50px;
     line-height: 3.125rem;
   }
-  /* line 193, components\_menu.scss */
+  /* line 213, components\_menu.scss */
   .masternav__menu > li:first-child {
     margin-left: 0;
   }
-  /* line 198, components\_menu.scss */
+  /* line 219, components\_menu.scss */
   .masternav__menu > li > ul {
     min-width: 100%;
   }
-  /* line 202, components\_menu.scss */
+  /* line 223, components\_menu.scss */
   .masternav__menu > li > .show-sub-menu {
+    height: 50px;
     height: 3.125rem;
   }
 }
-/* line 211, components\_menu.scss */
+/* line 233, components\_menu.scss */
 html.no-js .masternav__menu {
   display: block;
 }
-/* line 214, components\_menu.scss */
+/* line 236, components\_menu.scss */
 html.no-js .masternav__menu li:hover > ul {
   display: block;
 }
-/* line 219, components\_menu.scss */
+/* line 241, components\_menu.scss */
 html.no-js .masternav__awning {
   display: none;
 }
@@ -2694,52 +2718,44 @@ html.no-js .masternav__awning {
 /*------------------------------------*\
     MENU APPEARANCE
 \*------------------------------------*/
-/*
-$nav-color: black;
-$nav-color-hover: blue;
-$nav-bg: white;
-
-$nav-awning-color: white;
-$nav-awning-bg: #2A363B;
-*/
 @media screen and (min-width: 521px) {
-  /* line 248, components\_menu.scss */
+  /* line 261, components\_menu.scss */
   .masternav__menu ul .icon-angle-down:before {
-    content: "\f105";
+    content: '\f105';
   }
 }
-/* line 254, components\_menu.scss */
+/* line 267, components\_menu.scss */
 .masternav__menu a {
   text-decoration: none;
 }
-/* line 257, components\_menu.scss */
+/* line 270, components\_menu.scss */
 .masternav__menu a,
 .masternav__menu .show-sub-menu {
   outline: none;
   color: white;
 }
-/* line 261, components\_menu.scss */
+/* line 274, components\_menu.scss */
 .masternav__menu a:focus, .masternav__menu a:hover,
 .masternav__menu .show-sub-menu:focus,
 .masternav__menu .show-sub-menu:hover {
   color: #3f3f3f;
 }
-/* line 266, components\_menu.scss */
+/* line 279, components\_menu.scss */
 .masternav__menu li {
   background: #707070;
 }
-/* line 268, components\_menu.scss */
+/* line 281, components\_menu.scss */
 .masternav__menu li[class*="icon-"] {
   color: white;
 }
 
-/* line 274, components\_menu.scss */
+/* line 287, components\_menu.scss */
 .masternav__awning {
   color: white;
   background: #2a363b;
 }
 
-/* line 279, components\_menu.scss */
+/* line 292, components\_menu.scss */
 .masternav__awning__button {
   color: white;
   outline: none;
